@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff7fb;
+    color: #2b1723;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 35px auto;
+}
+
+.page-title {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #77536b;
+    margin-bottom: 28px;
+}
+
+/* LOGIN */
+
+.login-body {
+    min-height: 100vh;
+    background: #fff8fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 420px;
+    max-width: 92%;
+    background: white;
+    border-radius: 10px;
+    padding: 28px 36px 36px;
+    box-shadow: 0 18px 60px rgba(194, 112, 160, 0.18);
+}
+
+.pet-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pet-img {
+    width: 230px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.login-card label {
+    color: #a86a92;
+    font-weight: bold;
+    display: block;
+    margin: 18px 0 8px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 17px 20px;
+    border: 3px solid #cf85b4;
+    background: #fff8fc;
+    color: #814d70;
+    font-size: 16px;
+    outline: none;
+}
+
+.login-card input:focus {
+    border-color: #bd5f9f;
+}
+
+.login-card button,
+.btn {
+    border: none;
+    background: #d184b3;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.login-card button {
+    width: 100%;
+    margin-top: 30px;
+    padding: 18px;
+    border-radius: 4px;
+}
+
+.btn.danger {
+    background: #b91c1c;
+}
+
+.btn.dark {
+    background: #2b1723;
+}
+
+.error {
+    background: #ffe4ec;
+    color: #9d174d;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* TELA INICIAL */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 14px 35px rgba(120, 70, 105, 0.13);
+    color: #2b1723;
+}
+
+.dashboard-card h2 {
+    margin-top: 0;
+}
+
+.dashboard-card p {
+    color: #77536b;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
