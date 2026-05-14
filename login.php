@@ -1,11 +1,6 @@
 <?php
 require_once 'config/database.php';
-require_once 'includes/auth.php';
-
-if (is_logged()) {
-    header('Location: index.php');
-    exit;
-}
+session_start();
 
 $error = '';
 
@@ -17,14 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$email]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
+    if (password_verify($senha, $usuario['senha_hash'])) {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
 
-        header('Location: index.php');
+        header('Location: index.php?status=sucesso');
         exit;
     } else {
         $error = 'Email ou senha incorretos.';
+        echo $error;
     }
 }
 ?>
@@ -51,11 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1 class="login-title">Login</h1>
 
-    <?php if ($error): ?>
-        <div class="error"><?= e($error) ?></div>
-    <?php endif; ?>
-
-    <form method="POST">
+    <form method="post" action="login.php">
         <label>Email</label>
         <input 
             type="email" 
