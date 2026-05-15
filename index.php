@@ -49,7 +49,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table class="grupos-table">
             <thead>
                 <tr>
-                    <th>Nome do Grupo</th>
+                    <th>Grupo</th>
                     <th>Debut</th>
                     <th>Empresa</th>
                     <th>Membros</th>
