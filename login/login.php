@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once '../config/database.php';
 session_start();
 
 $error = '';
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
 
-        header('Location: index.php?status=sucesso');
+        header('Location: ../index.php?status=sucesso');
         exit;
     } else {
         $error = 'Email ou senha incorretos.';
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="login-body">
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="pet-wrap">
         <img 
-            src="assets/img/login/aberto.png" 
+            src="../assets/img/login/aberto.png" 
             alt="Cachorrinho do login" 
             id="petImg" 
             class="pet-img"
@@ -73,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 const senhaInput = document.getElementById('senhaInput');
 const petImg = document.getElementById('petImg');
 
-const imagemAberta = 'assets/img/login/aberto.png';
-const imagemFechada = 'assets/img/login/fechado.jpg';
+const imagemAberta = '../assets/img/login/aberto.png';
+const imagemFechada = '../assets/img/login/fechado.jpg';
 
 senhaInput.addEventListener('focus', () => {
     petImg.src = imagemFechada;

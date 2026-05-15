@@ -1,6 +1,6 @@
 <?php 
 
-require_once "config/database.php";
+require_once "../config/database.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
     $senha = $_POST['senha'] ?? '';
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha_hash) VALUES (?, ?, ?)");
         $stmt->execute([$nome, $email, $senha_hash]);
 
-        header('Location: login.php');
+        header('Location: ../login.php');
         exit;
     } else {
         echo "Todos os campos são obrigatórios.";

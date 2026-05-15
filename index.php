@@ -14,45 +14,79 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Área Logada</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>MIRROR HUB</title>
+    <link rel="stylesheet" href="assets/css/pg_index.css">
 </head>
-<body>
-<header>
-    <a href="logout.php" class="btn-sair">Sair</a>
-
+<body class="page-kpop">
+<header class="topbar">
+    <div class="topbar-logo">
+        <!-- <img src="assets/img/login/aberto.png" class="logo-icon" alt="MIRROR HUB"> -->
+        <span class="logo-text">MIRROR HUB</span>
+    </div>
+    <div class="topbar-user">
+        <span class="user-avatar">👤</span>
+        <span class="user-name">
+            <?= htmlspecialchars($_SESSION['usuario_nome'] ?? 'annyeong!') ?>
+        </span>
+        <a href="login/logout.php" class="btn-sair">Sair</a>
+    </div>
 </header>
-<main>
-    <h1>Bem-vindo, <?= $_SESSION['usuario_nome']?>!</h1>
-    <p>Esta é a área restrita do site.</p>
 
-    <h1>Grupos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome do grupo</th>
-                <th>Debut</th>
-                <th>Empresa</th>
-                <th>Membros</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($grupos as $grupo): ?>
+<main class="main-container">
+    <section class="page-header">
+        <div>
+            <h1 class="page-title">
+                Grupos de K-pop
+                <span class="title-icon">🦋</span>
+            </h1>
+        </div>
+        <a href="criar_grupo.php" class="btn-adicionar">
+            + Novo Grupo
+        </a>
+    </section>
+
+    <section class="table-card">
+        <table class="grupos-table">
+            <thead>
                 <tr>
-                    <td><?= $grupo['nome'] ?></td>
-                    <td><?= $grupo['debut']?></td>
-                    <td><?= $grupo['empresa']?></td>
-                    <td><?= $grupo['numero_membros']?></td>
-                    <td>
-                        <a href="editar.php?id_grupo=<?= $grupo['id']?>" class="btn-editar">Editar</a>
-                        <a href="excluir_grupo.php?id_grupo=<?= $grupo['id']?>" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir este grupo?')">Excluir</a>
-                    </td>
+                    <th>Nome do Grupo</th>
+                    <th>Debut</th>
+                    <th>Empresa</th>
+                    <th>Membros</th>
+                    <th class="acoes-title">Ações</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <a href="grupos.php" class="btn-adicionar">Adicionar grupo</a>
+            </thead>
+
+            <tbody>
+                <?php foreach ($grupos as $grupo): ?>
+                    <tr>
+                        <td class="grupo-nome">
+                            <?= htmlspecialchars($grupo['nome']) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($grupo['debut']) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($grupo['empresa']) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($grupo['numero_membros']) ?>
+                        </td>
+
+                        <td class="acoes">
+                            <a href="editar.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-editar" title="Editar grupo"> ✎ </a>
+                            <a href="excluir_grupo.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-excluir" title="Excluir grupo" onclick="return confirm('Tem certeza que deseja excluir este grupo?')"> 🗑 </a>
+                            <a href="grupo.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-detalhes" title="Detalhes do grupo"> 🕵️ </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
+
 </main>
 
 </body>
