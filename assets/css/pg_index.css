@@ -57,7 +57,7 @@ body.page-kpop::after {
 }
 
 .logo-icon {
-    font-size: 22px;
+    width: 60px;
 }
 
 .logo-text {
@@ -230,6 +230,12 @@ body.page-kpop::after {
     transition: 0.2s ease;
 }
 
+.btn-detalhes {
+    background: #eaf4ff;
+    border: 2px solid #9725f5;
+    color: #9725f5;
+}
+
 .btn-editar {
     background: #eaf4ff;
     border: 2px solid #5aa9ff;
@@ -243,7 +249,8 @@ body.page-kpop::after {
 }
 
 .btn-editar:hover,
-.btn-excluir:hover {
+.btn-excluir:hover,
+.btn-detalhes:hover {
     transform: scale(1.08);
 }
 

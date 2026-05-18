@@ -16,11 +16,12 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>MIRROR HUB</title>
     <link rel="stylesheet" href="assets/css/pg_index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="page-kpop">
 <header class="topbar">
     <div class="topbar-logo">
-        <!-- <img src="assets/img/login/aberto.png" class="logo-icon" alt="MIRROR HUB"> -->
+        <img src="assets/img/login/aberto.png" class="logo-icon" alt="MIRROR HUB">
         <span class="logo-text">MIRROR HUB</span>
     </div>
     <div class="topbar-user">
@@ -37,7 +38,6 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div>
             <h1 class="page-title">
                 Grupos de K-pop
-                <span class="title-icon">🦋</span>
             </h1>
         </div>
         <a href="criar_grupo.php" class="btn-adicionar">
@@ -79,7 +79,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="acoes">
                             <a href="editar.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-editar" title="Editar grupo"> ✎ </a>
                             <a href="excluir_grupo.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-excluir" title="Excluir grupo" onclick="return confirm('Tem certeza que deseja excluir este grupo?')"> 🗑 </a>
-                            <a href="grupo.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-detalhes" title="Detalhes do grupo"> 🕵️ </a>
+                            <a href="grupo.php?id_grupo=<?= $grupo['id'] ?>" class="btn-acao btn-detalhes" title="Detalhes do grupo"> <i class="fa-solid fa-circle-info"></i> </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
