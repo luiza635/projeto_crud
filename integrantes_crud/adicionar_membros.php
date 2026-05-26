@@ -1,6 +1,6 @@
 <?php 
-include_once "config/database.php";
-include_once "includes/auth.php";
+include_once "../config/database.php";
+include_once "../includes/auth.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Grupo</title>
-    <link rel="stylesheet" href="assets/css/pg_criar.css">
+    <title>Novo Integrante</title>
+    <link rel="stylesheet" href="../\assets/css/pg_criar.css">
 </head>
 
 <body class="form-page">
@@ -37,75 +37,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-top">
             <a href="index.php" class="btn-voltar">←</a>
 
-            <h1 class="form-title">Adicionar Novo Grupo</h1>
+            <h1 class="form-title">Adicionar Novo Integrante</h1>
 
             <span class="heart-icon">♡</span>
         </div>
 
-        <form action="criar_grupo.php" method="POST" enctype="multipart/form-data" class="grupo-form">
+        <form action="adicionar_membros.php" method="POST" enctype="multipart/form-data" class="grupo-form">
 
             <div class="form-group">
-                <label for="nome">Nome do Grupo</label>
+                <label for="nome">Nome real do Integrante</label>
 
                 <input 
                     type="text" 
                     id="nome" 
                     name="nome" 
-                    placeholder="Ex.: ATEEZ" 
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="tipo">Tipo</label>
+                <label for="nome_artistico">Nome artistico do Integrante</label>
 
-                <select id="tipo" name="tipo" required>
-                    <option value="" disabled selected>Selecione o tipo</option>
-                    <option value="Boy Group">Boy Group</option>
-                    <option value="Girl Group">Girl Group</option>
+                <input 
+                    type="text" 
+                    id="nome_artistico" 
+                    name="nome_artistico" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="funcao">Tipo</label>
+
+                <select id="funcao" name="funcao" required>
+                    <option value="" disabled selected>Selecione a função</option>
+                    <option value="vocalista">Vocalista</option>
+                    <option value="dançarino">Dançarino</option>
+                    <option value="compositor">Compositor</option>
+                    <option value="rapper">Rapper</option>
+                    <option value="líder">Líder</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="debut">Ano de Debut</label>
+                <label for="aniversario">Aniversário</label>
 
                 <input 
-                    type="number" 
-                    id="debut" 
-                    name="debut" 
+                    type="date" 
+                    id="aniversario" 
+                    name="aniversario" 
                     placeholder="Ex.: 2020" 
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="empresa">Empresa</label>
+                <label for="foto">Foto</label>
 
-                <input 
-                    type="text" 
-                    id="empresa" 
-                    name="empresa" 
-                    placeholder="Ex.: KQ Entertainment" 
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="membros">Número de Membros</label>
-
-                <input 
-                    type="number" 
-                    name="membros" 
-                    id="membros" 
-                    placeholder="Ex.: 8" 
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="imagem">Imagem do Grupo</label>
-
-                <label for="imagem" class="upload-box">
+                <label for="foto" class="upload-box">
                     <span class="upload-icon">☁</span>
                     <strong>Clique para enviar</strong>
                     <small>uma imagem</small>
@@ -113,20 +102,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <input 
                     type="file" 
-                    id="imagem" 
-                    name="imagem" 
+                    id="foto" 
+                    name="foto" 
                     accept="image/*" 
                     class="input-file"
                 >
             </div>
 
             <div class="form-group descricao-group">
-                <label for="descricao">Descrição</label>
+                <label for="biografia">Biografia</label>
 
                 <textarea 
-                    id="descricao" 
-                    name="descricao" 
-                    placeholder="Fale sobre o grupo..."
+                    id="biografia" 
+                    name="biografia" 
+                    placeholder="Fale sobre o integrante..."
                     required
                 ></textarea>
             </div>
@@ -135,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="index.php" class="btn-cancelar">Cancelar</a>
 
                 <button type="submit" class="btn-salvar">
-                    Salvar Grupo
+                    Salvar Integrante
                 </button>
             </div>
 

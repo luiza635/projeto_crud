@@ -80,10 +80,31 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
                             <img src="" alt="">
                         </div>
                         <div>
+                            <img src="assets/img/teasan.jpg" alt="" srcset="">
                             <p><strong>Nome:</strong> <?= $membro->nome_artistico; ?></p>
                             <p><strong>Função:</strong> <?= $membro->funcao; ?></p>
-                            <a href="integrantes_crud/editar_membros.php?id=<?= $membro->id; ?>">Editar</a>
-                            <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>">Excluir</a>
+                            <a href="integrantes_crud/editar_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Editar</a>
+                            <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Excluir</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div>
+                <h2>Discografia</h2>
+                <p>Lista de álbuns e singles do grupo.</p>
+            </div>
+            <div>
+                <?php foreach ($musicas as $musica): ?>
+                    <div>
+                        <div>
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <img src="assets/img/teasan.jpg" alt="" srcset="">
+                            <p><strong>Nome:</strong> <?= $musica->nome; ?></p>
+                            <p><strong>Função:</strong> <?= $membro->funcao; ?></p>
+                            <a href="integrantes_crud/update_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Editar</a>
+                            <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Excluir</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
