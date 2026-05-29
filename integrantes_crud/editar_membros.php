@@ -42,13 +42,13 @@ $membro = $stmt->fetch(PDO::FETCH_OBJ);
             <input type="hidden" name="id_grupo" value="<?= $id_grupo; ?>">
 
             <div class="form-group">
-                <label for="nome">Nome real do Integrante</label>
+                <label for="nome_real">Nome real do Integrante</label>
 
                 <input 
                     type="text" 
-                    id="nome" 
-                    name="nome" 
-                    value="<?= $membro->nome; ?>"
+                    id="nome_real" 
+                    name="nome_real" 
+                    value="<?= $membro->nome_real ?>"
                     required
                 >
             </div>

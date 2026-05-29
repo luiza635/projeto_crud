@@ -2,21 +2,22 @@
 include_once "../config/database.php";
 include_once "../includes/auth.php";
 
+$id_grupo = $_GET['id_grupo'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = $_POST['nome'];
-    $debut = $_POST['debut'];
-    $empresa = $_POST['empresa'];
-    $membros = $_POST['membros'];
-    $tipo = $_POST['tipo'];
-    $descricao = $_POST['descricao'];
+    $nome_real = $_POST['nome_real'];
+    $nome_artistico = $_POST['nome_artistico'];
+    $aniversario = $_POST['aniversario'];
+    $funcao = $_POST['funcao'];
+    $biografia = $_POST['biografia'];
 
     // Aqui você pode adicionar a lógica para lidar com o upload da imagem, se necessário.
 
-    $sql = "INSERT INTO grupos (nome, debut, empresa, numero_membros, tipo_grupo, descricao) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO integrantes (nome_real, nome_artistico, aniversario, funcao, biografia, grupo_id) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nome, $debut, $empresa, $membros, $tipo, $descricao]);
+    $stmt->execute([$nome_real, $nome_artistico, $aniversario, $funcao, $biografia, $id_grupo]);
 
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -45,12 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="adicionar_membros.php" method="POST" enctype="multipart/form-data" class="grupo-form">
 
             <div class="form-group">
-                <label for="nome">Nome real do Integrante</label>
+                <label for="nome_real">Nome real do Integrante</label>
 
                 <input 
                     type="text" 
-                    id="nome" 
-                    name="nome" 
+                    id="nome_real" 
+                    name="nome_real" 
                     required
                 >
             </div>

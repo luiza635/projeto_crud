@@ -13,6 +13,9 @@ $stmt = $pdo->prepare("SELECT * FROM integrantes WHERE grupo_id = ?");
 $stmt->execute([$id_grupo]);   
 $membros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+$stmt = $pdo->prepare("SELECT * FROM musicas WHERE grupo_id = ?");
+$stmt->execute([$id_grupo]);   
+$musicas = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 $stmt = $pdo->prepare("SELECT * FROM grupos WHERE id = ?");
 $stmt->execute([$id_grupo]);   
@@ -71,7 +74,7 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
         <div class="container-detalhes">
             <div>
                 <h2>Membros</h2>
-                <a href="integrantes_crud/adicionar_membros.php">Adicionar Membro</a>
+                <a href="integrantes_crud/adicionar_membros.php?id_grupo=<?= $id_grupo; ?>">Adicionar Membro</a>
             </div>
             <div>
                 <?php foreach ($membros as $membro): ?>
@@ -81,7 +84,8 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
                         </div>
                         <div>
                             <img src="assets/img/teasan.jpg" alt="" srcset="">
-                            <p><strong>Nome:</strong> <?= $membro->nome_artistico; ?></p>
+                            <p><strong>Nome Artistico:</strong> <?= $membro->nome_artistico; ?></p>
+                            <p><strong>Nome real:</strong> <?= $membro->nome_real; ?></p>
                             <p><strong>Função:</strong> <?= $membro->funcao; ?></p>
                             <a href="integrantes_crud/editar_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Editar</a>
                             <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Excluir</a>
@@ -92,19 +96,20 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
             <div>
                 <h2>Discografia</h2>
                 <p>Lista de álbuns e singles do grupo.</p>
+                <a href="musicas_crud/adicionar_musica.php?id_grupo=<?= $id_grupo; ?>">Adicionar Música</a>
             </div>
             <div>
                 <?php foreach ($musicas as $musica): ?>
                     <div>
                         <div>
-                            <img src="" alt="">
+                            <img src="assets/img/teasan.jpg" alt="" srcset="">
                         </div>
                         <div>
-                            <img src="assets/img/teasan.jpg" alt="" srcset="">
-                            <p><strong>Nome:</strong> <?= $musica->nome; ?></p>
-                            <p><strong>Função:</strong> <?= $membro->funcao; ?></p>
-                            <a href="integrantes_crud/update_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Editar</a>
-                            <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>">Excluir</a>
+                            <p><strong>Nome:</strong> <?= $musica->titulo; ?></p>
+                            <p><strong>Ouvir:</strong> <?= $musica->link_ouvir; ?></p>
+                            <p><strong>Letra:</strong> <?= $musica->letra; ?></p>
+                            <a href="musicas_crud/editar_musica.php?id=<?= $musica->id; ?>&id_grupo=<?= $id_grupo; ?>">Editar</a>
+                            <a href="musicas_crud/excluir_musica.php?id=<?= $musica->id; ?>&id_grupo=<?= $id_grupo; ?>">Excluir</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
