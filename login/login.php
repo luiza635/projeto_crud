@@ -30,15 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login</title>
 
-    <!-- CSS PRINCIPAL -->
-    <link rel="stylesheet" href="../assets/css/style.css?v=20">
+    <link rel="stylesheet" href="../assets/css/style.css?v=49">
 </head>
 
 <body class="login-body">
 
     <main class="desktop-login">
 
-        <!-- PASTAS DA ESQUERDA -->
         <div class="left-menu">
 
             <div class="folder-item">
@@ -58,12 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </div>
 
-        <!-- JANELA PRINCIPAL -->
         <section class="browser-window">
 
             <div class="browser-tabs">
                 <span class="tab tab-one"></span>
-                <span class="tab tab-two"></span>
             </div>
 
             <div class="browser-topbar">
@@ -78,16 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="window-actions">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <img
+                        src="../assets/img/login/mensagens.png"
+                        alt="Ícone de mensagens"
+                        class="mensagens-icon"
+                    >
                 </div>
 
             </div>
 
             <div class="browser-content">
 
-                <!-- LADO DO COELHINHO -->
                 <div class="cute-side">
 
                     <div class="speech-bubble">
@@ -100,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="pet-wrap">
                         <img
-                            src="../assets/img/login/foto.png"
+                            src="../assets/img/login/coelho.png"
                             alt="Coelhinho do login"
                             id="petImg"
                             class="pet-img"
@@ -109,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
 
-                <!-- PAINEL DE LOGIN -->
                 <div class="login-panel">
 
                     <div class="avatar-circle"></div>
@@ -118,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <?php if (!empty($error)): ?>
                         <div class="error">
-                            <?php echo $error; ?>
+                            <?php echo htmlspecialchars($error); ?>
                         </div>
                     <?php endif; ?>
 
@@ -129,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="email@email.com"
+                            placeholder="email@gmail.com"
                             required
                         >
 
@@ -144,8 +140,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="login-buttons">
                             <button type="button" class="btn-small">cancel</button>
-                            <button type="submit" class="btn-small">accept</button>
+                            <button type="submit" class="btn-small">entrar</button>
                         </div>
+
+                        <a href="cadastro.php" class="register-link">criar conta</a>
 
                     </form>
 
@@ -155,49 +153,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </section>
 
-        <!-- PALETA DA DIREITA -->
+        <!-- IMAGEM DO URSINHO -->
+        <div class="foto-direita">
+            <img src="../assets/img/login/ursinho.png" alt="Imagem do ursinho">
+        </div>
+
         <div class="right-palette">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-        </div>
-
-        <!-- CARD DE MÚSICA -->
-        <div class="music-card">
-
-            <div class="music-icons">
-                <div class="play-btn">▶</div>
-                <span>▶</span>
-                <span>▶▶</span>
-                <span class="heart-btn">♥</span>
-            </div>
-
-            <div class="music-line">
-                <span></span>
-            </div>
-
-        </div>
-
-        <!-- BARRA INFERIOR -->
-        <div class="bottom-bar">
-
-            <div class="windows-icon"></div>
-            <div class="folder-small"></div>
-
-            <div class="search-bar">
-                <b>⌕</b>
-                <span></span>
-                <b>×</b>
-            </div>
-
-            <div class="system-icons">
-                <span>▱</span>
-                <span>⌁</span>
-                <span>⚙</span>
-            </div>
-
         </div>
 
     </main>
