@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
+
 <body class="login-body">
 
     <main class="desktop-login">
@@ -84,16 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="cute-side">
 
-                    <div class="hearts">
-                        <span></span>
-                        <span></span>
+                    <div class="speech-bubble">
+                        <img
+                            src="../assets/img/login/balao.png"
+                            alt="Balão decorativo"
+                            class="bubble-img"
+                        >
                     </div>
 
                     <div class="pet-wrap">
                         <img
-                            src="../assets/img/login/aberto.png"
+                            src="../assets/img/login/foto.png"
                             alt="Imagem do login"
-                            id="petImg"
                             class="pet-img"
                         >
                     </div>
@@ -189,28 +193,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
     </main>
-
-    <script>
-        const senhaInput = document.getElementById('senhaInput');
-        const petImg = document.getElementById('petImg');
-
-        const imagemAberta = '../assets/img/login/aberto.png';
-        const imagemFechada = '../assets/img/login/fechado.jpg';
-
-        if (senhaInput && petImg) {
-            senhaInput.addEventListener('focus', () => {
-                petImg.src = imagemFechada;
-            });
-
-            senhaInput.addEventListener('input', () => {
-                petImg.src = imagemFechada;
-            });
-
-            senhaInput.addEventListener('blur', () => {
-                petImg.src = imagemAberta;
-            });
-        }
-    </script>
 
 </body>
 </html>

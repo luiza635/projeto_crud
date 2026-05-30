@@ -29,7 +29,7 @@ a {
     margin-bottom: 28px;
 }
 
-/* LOGIN NOVO */
+/* LOGIN */
 
 .login-body {
     min-height: 100vh;
@@ -255,71 +255,42 @@ a {
     min-height: 280px;
 }
 
-.hearts {
-    position: relative;
-    width: 160px;
-    height: 75px;
-    margin-bottom: -2px;
+/* BALÃO NOVO */
+
+.speech-bubble {
+    width: 165px;
+    height: 115px;
+    margin-bottom: -14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hearts span {
-    position: absolute;
-    width: 72px;
-    height: 72px;
-    transform: rotate(45deg);
-    border: 4px solid #c68669;
-    border-radius: 17px 17px 8px 17px;
-    background: #f7b7ba;
-    box-shadow: inset 8px 8px 0 rgba(255,255,255,.55);
-}
-
-.hearts span::before,
-.hearts span::after {
-    content: "";
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border: 4px solid #c68669;
-    border-radius: 50%;
-    background: #f7b7ba;
-}
-
-.hearts span::before {
-    left: -39px;
-    top: -2px;
-}
-
-.hearts span::after {
-    left: -2px;
-    top: -39px;
-}
-
-.hearts span:first-child {
-    left: 10px;
-    top: 8px;
-    transform: rotate(45deg) scale(.7);
-}
-
-.hearts span:last-child {
-    right: 2px;
-    top: 2px;
-    transform: rotate(45deg) scale(.85);
+.bubble-img {
+    width: 128px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 5px 0 rgba(112, 73, 54, .14));
 }
 
 .pet-wrap {
-    width: 230px;
-    height: 185px;
+    width: 250px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .pet-img {
-    width: 230px;
-    max-width: 100%;
+    max-width: 235px;
+    max-height: 245px;
+    width: auto;
     height: auto;
     display: block;
-    filter: drop-shadow(0 7px 0 rgba(112, 73, 54, .16));
+    object-fit: contain;
+    filter: drop-shadow(0 8px 0 rgba(112, 73, 54, .14));
 }
 
 .login-panel {
@@ -353,7 +324,10 @@ a {
     clip: rect(0, 0, 0, 0);
 }
 
+/* FORMULÁRIO ALINHADO */
+
 .login-form {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 11px;
@@ -361,13 +335,14 @@ a {
 
 .login-form label {
     position: absolute;
-    left: 58px;
+    left: 22px;
     width: 70px;
-    height: 42px;
+    height: 45px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     color: #fff6ed;
-    font-size: 23px;
+    font-size: 22px;
     font-weight: 900;
     letter-spacing: .4px;
     pointer-events: none;
@@ -375,11 +350,11 @@ a {
 }
 
 .login-form label[for="email"] {
-    top: 122px;
+    top: 0;
 }
 
 .login-form label[for="senhaInput"] {
-    top: 176px;
+    top: 56px;
 }
 
 .login-form input {
@@ -390,7 +365,7 @@ a {
     background: #704936;
     color: #fff9ef;
     outline: none;
-    padding: 0 18px 0 88px;
+    padding: 0 18px 0 98px;
     font-size: 16px;
     font-weight: 800;
     box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .08);
@@ -606,7 +581,7 @@ a {
     font-weight: 900;
 }
 
-/* RESTANTE DO SISTEMA */
+/* OUTRAS PARTES DO SISTEMA */
 
 .btn {
     border: none;
@@ -672,6 +647,10 @@ a {
 }
 
 @media (max-width: 720px) {
+    .login-body {
+        overflow-y: auto;
+    }
+
     .browser-window {
         min-height: auto;
         border-radius: 22px;
@@ -708,17 +687,27 @@ a {
     }
 
     .cute-side {
-        min-height: 190px;
+        min-height: 220px;
     }
 
-    .pet-wrap,
+    .speech-bubble {
+        width: 145px;
+        height: 100px;
+        margin-bottom: -12px;
+    }
+
+    .bubble-img {
+        width: 110px;
+    }
+
+    .pet-wrap {
+        width: 210px;
+        height: 220px;
+    }
+
     .pet-img {
-        width: 185px;
-    }
-
-    .hearts {
-        transform: scale(.7);
-        margin-bottom: -18px;
+        max-width: 200px;
+        max-height: 215px;
     }
 
     .login-panel {
