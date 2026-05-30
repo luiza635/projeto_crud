@@ -29,32 +29,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- CSS PRINCIPAL -->
+    <link rel="stylesheet" href="../assets/css/style.css?v=20">
 </head>
 
 <body class="login-body">
 
     <main class="desktop-login">
 
+        <!-- PASTAS DA ESQUERDA -->
         <div class="left-menu">
 
             <div class="folder-item">
                 <span class="folder-icon"></span>
-                Groups
+                groups
             </div>
 
             <div class="folder-item">
                 <span class="folder-icon"></span>
-                Members
+                members
             </div>
 
             <div class="folder-item">
                 <span class="folder-icon"></span>
-                Songs
+                songs
             </div>
 
         </div>
 
+        <!-- JANELA PRINCIPAL -->
         <section class="browser-window">
 
             <div class="browser-tabs">
@@ -63,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="browser-topbar">
+
                 <div class="browser-arrows">
                     <span>‹</span>
                     <span>›</span>
@@ -77,16 +82,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span></span>
                     <span></span>
                 </div>
+
             </div>
 
             <div class="browser-content">
 
+                <!-- LADO DO COELHINHO -->
                 <div class="cute-side">
 
                     <div class="speech-bubble">
                         <img
                             src="../assets/img/login/balao.png"
-                            alt="Balão decorativo"
+                            alt="Balão com coração"
                             class="bubble-img"
                         >
                     </div>
@@ -94,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="pet-wrap">
                         <img
                             src="../assets/img/login/foto.png"
-                            alt="Imagem do login"
+                            alt="Coelhinho do login"
                             id="petImg"
                             class="pet-img"
                         >
@@ -102,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
 
+                <!-- PAINEL DE LOGIN -->
                 <div class="login-panel">
 
                     <div class="avatar-circle"></div>
@@ -130,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             type="password"
                             name="senha"
                             id="senhaInput"
-                            placeholder="••••••••"
+                            placeholder="••••••"
                             required
                         >
 
@@ -147,6 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </section>
 
+        <!-- PALETA DA DIREITA -->
         <div class="right-palette">
             <span></span>
             <span></span>
@@ -155,7 +164,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span></span>
         </div>
 
+        <!-- CARD DE MÚSICA -->
         <div class="music-card">
+
             <div class="music-icons">
                 <div class="play-btn">▶</div>
                 <span>▶</span>
@@ -166,9 +177,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="music-line">
                 <span></span>
             </div>
+
         </div>
 
+        <!-- BARRA INFERIOR -->
         <div class="bottom-bar">
+
             <div class="windows-icon"></div>
             <div class="folder-small"></div>
 
@@ -183,6 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>⌁</span>
                 <span>⚙</span>
             </div>
+
         </div>
 
     </main>
