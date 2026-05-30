@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Cadastro</title>
 
-    <link rel="stylesheet" href="../assets/css/style.css?v=48">
+    <link rel="stylesheet" href="../assets/css/style.css?v=52">
 </head>
 
 <body class="login-body">
@@ -86,33 +86,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="cadastro.php" class="login-form cadastro-form">
+                    <form method="post" action="cadastro.php" class="cadastro-form">
 
-                        <label for="nome">nome:</label>
-                        <input
-                            type="text"
-                            name="nome"
-                            id="nome"
-                            required
-                        >
+                        <div class="cadastro-field">
+                            <label for="nome">nome:</label>
+                            <input
+                                type="text"
+                                name="nome"
+                                id="nome"
+                                required
+                            >
+                        </div>
 
-                        <label for="email" class="label-email-cadastro">email:</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            required
-                        >
+                        <div class="cadastro-field">
+                            <label for="email">email:</label>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                required
+                            >
+                        </div>
 
-                        <label for="senha" class="label-senha-cadastro">senha:</label>
-                        <input
-                            type="password"
-                            name="senha"
-                            id="senha"
-                            required
-                        >
+                        <div class="cadastro-field">
+                            <label for="senha">senha:</label>
+                            <input
+                                type="password"
+                                name="senha"
+                                id="senha"
+                                required
+                            >
+                        </div>
 
-                        <div class="login-buttons">
+                        <div class="login-buttons cadastro-buttons">
                             <a href="login.php" class="btn-small btn-link">voltar</a>
                             <button type="submit" class="btn-small">cadastrar</button>
                         </div>
