@@ -8,21 +8,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
-    if ($email === '' || $senha === '') {
-        $error = 'Preencha email e senha.';
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ? LIMIT 1");
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
+
+        header('Location: ../index.php?status=sucesso');
+        exit;
     } else {
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ? LIMIT 1");
-        $stmt->execute([$email]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-
-            header('Location: ../index.php?status=sucesso');
-            exit;
-        }
-
         $error = 'Email ou senha incorretos.';
     }
 }
@@ -32,11 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Login</title>
-
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -44,34 +36,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main class="desktop-login">
 
-        <aside class="left-menu">
+        <div class="left-menu">
+
             <div class="folder-item">
                 <span class="folder-icon"></span>
-                <span>intro</span>
+                Groups
             </div>
 
             <div class="folder-item">
                 <span class="folder-icon"></span>
-                <span>outro</span>
+                Members
             </div>
-        </aside>
+
+            <div class="folder-item">
+                <span class="folder-icon"></span>
+                Songs
+            </div>
+
+        </div>
 
         <section class="browser-window">
 
             <div class="browser-tabs">
-                <div class="tab tab-one"></div>
-                <div class="tab tab-two"></div>
+                <span class="tab tab-one"></span>
+                <span class="tab tab-two"></span>
             </div>
 
             <div class="browser-topbar">
-
                 <div class="browser-arrows">
-                    <span>&lsaquo;</span>
-                    <span>&rsaquo;</span>
+                    <span>‹</span>
+                    <span>›</span>
                 </div>
 
                 <div class="address-bar">
-                    www.youtube.com:
+                    crud.com
                 </div>
 
                 <div class="window-actions">
@@ -79,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span></span>
                     <span></span>
                 </div>
-
             </div>
 
             <div class="browser-content">
@@ -98,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <img
                             src="../assets/img/login/foto.png"
                             alt="Imagem do login"
+                            id="petImg"
                             class="pet-img"
                         >
                     </div>
@@ -112,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <?php if (!empty($error)): ?>
                         <div class="error">
-                            <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
+                            <?php echo $error; ?>
                         </div>
                     <?php endif; ?>
 
@@ -121,32 +119,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="email">user:</label>
                         <input
                             type="email"
-                            id="email"
                             name="email"
+                            id="email"
                             placeholder="email@email.com"
-                            value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
-                            autocomplete="email"
                             required
                         >
 
                         <label for="senhaInput">pass:</label>
                         <input
                             type="password"
-                            id="senhaInput"
                             name="senha"
+                            id="senhaInput"
                             placeholder="••••••••"
-                            autocomplete="current-password"
                             required
                         >
 
                         <div class="login-buttons">
-                            <button type="reset" class="btn-small btn-cancel">
-                                cancel
-                            </button>
-
-                            <button type="submit" class="btn-small btn-accept">
-                                accept
-                            </button>
+                            <button type="button" class="btn-small">cancel</button>
+                            <button type="submit" class="btn-small">accept</button>
                         </div>
 
                     </form>
@@ -167,8 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="music-card">
             <div class="music-icons">
-                <span class="play-btn">▶</span>
-                <span class="next-btn">▶▶</span>
+                <div class="play-btn">▶</div>
+                <span>▶</span>
+                <span>▶▶</span>
                 <span class="heart-btn">♥</span>
             </div>
 
@@ -178,11 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="bottom-bar">
-            <span class="windows-icon"></span>
-            <span class="folder-small"></span>
+            <div class="windows-icon"></div>
+            <div class="folder-small"></div>
 
             <div class="search-bar">
-                ⌕ <span></span> <b>×</b>
+                <b>⌕</b>
+                <span></span>
+                <b>×</b>
             </div>
 
             <div class="system-icons">
