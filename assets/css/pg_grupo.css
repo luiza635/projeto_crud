@@ -36,9 +36,9 @@ body.group-info::before {
 body.group-info::after {
   content: "";
   position: fixed;
-  right: -40px;
-  bottom: 6px;
-  width: 240px;
+  right: -80px;
+  bottom: -29px;
+  width: 230px;
   height: 170px;
   background-image: url("../img/login/ursinho.png");
   background-size: contain;
@@ -56,22 +56,15 @@ body.group-info::after {
   position: relative;
 }
 
-/* Janela CMD topo */
+/* Remove aba topo */
 .details-container::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 33px;
-  width: 200px;
-  height: 40px;
-  background: #fff8e9;
-  border: 6px solid #704936;
-  border-bottom: none;
-  border-radius: 14px 14px 0 0;
+  display: none !important;
+  content: none !important;
 }
 
+/* Barra de endereço / detalhes */
 .details-container::after {
-  content: "‹  ›      crud.com/groups/info";
+  content: "‹  ›      crud.com/groups/detalhes";
   position: absolute;
   top: 0;
   left: 0;
@@ -88,13 +81,17 @@ body.group-info::after {
   border-radius: 18px 18px 0 0;
 }
 
+/* Cabeçalho Voltar + Detalhes */
 .details-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 24px;
   margin-bottom: 26px;
+  margin-top: 20px;
+  position: relative; /* necessário para centralizar o título */
 }
 
+/* Botão voltar */
 .details-header .btn-back {
   background: #704936;
   color: #fff9ef;
@@ -103,14 +100,22 @@ body.group-info::after {
   font-weight: 900;
   text-decoration: none;
   font-size: 15px;
+  flex-shrink: 0;
 }
 
+/* Título centralizado */
 .details-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 34px;
   font-weight: 900;
   text-transform: uppercase;
+  text-align: center;
+  margin: 0;
 }
 
+/* Card do grupo */
 .group-card {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -160,4 +165,181 @@ body.group-info::after {
   border-radius: 22px;
   margin: 6px 4px 0;
   font-size: 15px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .details-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .details-title {
+    text-align: center;
+    position: static;
+    transform: none;
+  }
+}
+
+/* Esconde aba do navegador falsa */
+.browser-tabs,
+.tab,
+.tab-one {
+    display: none !important;
+}
+
+.browser-window {
+    margin-top: 0 !important;
+}
+
+.topo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    margin-bottom: 28px;
+}
+
+.btn-voltar {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #704936;
+    color: #fff8e9;
+    padding: 8px 18px;
+    border-radius: 0 0 18px 18px;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.btn-voltar:hover {
+    background: #5f3928;
+    color: #fff8e9;
+}
+
+.titulo {
+    margin: 0;
+    color: #704936;
+    font-size: 34px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+}
+/* Botões estilizados para Membros e Discografia */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #704936;
+    color: #fff9ef;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-weight: 900;
+    text-decoration: none;
+    font-size: 16px;
+    box-shadow: 3px 3px 0 rgba(112,73,54,0.25);
+    transition: 0.2s ease;
+}
+
+.btn-action:hover {
+    background: #5e3a2a;
+    transform: translateY(-1px);
+}
+
+/* Grid de itens (Membros / Discografia) */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+/* Cards internos */
+.item-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #e7b8af;
+    border: 3px solid #704936;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.item-photo {
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
+}
+
+.item-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid #704936;
+    border-radius: 16px;
+}
+
+.item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.item-info p {
+    font-size: 15px;
+    font-weight: 700;
+    color: #704936;
+    margin-bottom: 5px;
+}
+
+.item-info strong {
+    font-weight: 900;
+}
+
+.item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-small {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+.btn-edit {
+    background: #fff8e9;
+    color: #704936;
+    border: 2px solid #704936;
+}
+
+.btn-delete {
+    background: #704936;
+    color: #fff9ef;
+    border: 2px solid #704936;
+}
+
+.btn-small:hover {
+    transform: translateY(-1px);
+}
+
+/* Mensagem caso não haja itens */
+.empty-message {
+    font-size: 16px;
+    font-weight: 800;
+    color: #704936;
+    background: #f3d4cc;
+    border: 3px solid #704936;
+    border-radius: 18px;
+    padding: 14px 18px;
 }
