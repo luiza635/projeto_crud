@@ -64,7 +64,7 @@ body.group-info::after {
 
 /* Barra de endereço / detalhes */
 .details-container::after {
-  content: "‹  ›      crud.com/groups/detalhes"; /* info → detalhes */
+  content: "‹  ›      crud.com/groups/detalhes"; 
   position: absolute;
   top: 0;
   left: 0;
@@ -83,15 +83,20 @@ body.group-info::after {
 
 /* Cabeçalho Voltar + Detalhes */
 .details-header {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center; /* centraliza a frase */
   gap: 24px;
   margin-bottom: 26px;
   margin-top: 20px;
 }
 
 /* Botão voltar */
-.details-header .btn-back {
+.details-header .btn-back,
+.btn-voltar {
+  position: absolute;
+  left: 0;
   background: #704936;
   color: #fff9ef;
   padding: 10px 16px;
@@ -100,16 +105,27 @@ body.group-info::after {
   text-decoration: none;
   font-size: 15px;
   flex-shrink: 0;
+  transition: 0.2s ease;
+}
+
+.details-header .btn-back:hover,
+.btn-voltar:hover {
+  background: #5f3928;
+  color: #fff9ef;
 }
 
 /* Título centralizado */
-.details-title {
+.details-title,
+.titulo {
   font-size: 34px;
   font-weight: 900;
   text-transform: uppercase;
-  flex-grow: 1;
-  text-align: center;
-  margin: 0;
+  text-align: center; /* centraliza horizontalmente */
+  margin: 0 auto;     /* centraliza no container */
+  display: block;
+  width: 100%;
+  line-height: 1;
+  color: #704936;
 }
 
 /* Card do grupo */
@@ -184,6 +200,7 @@ body.group-info::after {
 .browser-window {
     margin-top: 0 !important;
 }
+
 .topo {
     position: relative;
     display: flex;
@@ -205,19 +222,4 @@ body.group-info::after {
     font-weight: 800;
     font-size: 15px;
     text-decoration: none;
-}
-
-.btn-voltar:hover {
-    background: #5f3928;
-    color: #fff8e9;
-}
-
-.titulo {
-    margin: 0;
-    text-align: center;
-    color: #704936;
-    font-size: 34px;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1;
 }

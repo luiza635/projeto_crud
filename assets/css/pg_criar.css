@@ -17,8 +17,8 @@ body.form-page {
   position: relative;
 }
 
-/* Gatinho e Ursinho */
-body::before {
+/* Gatinho */
+body.form-page::before {
   content: "";
   position: fixed;
   top: -20px;
@@ -28,35 +28,59 @@ body::before {
   background-image: url("../img/login/gatinho.png");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 0;
 }
-body::after {
+
+/* Ursinho */
+body.form-page::after {
   content: "";
   position: fixed;
   right: -40px;
-  bottom: 10px;
+  bottom: -29px;
   width: 220px;
   height: 160px;
   background-image: url("../img/login/ursinho.png");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 0;
 }
 
-/* Container principal */
+/* Container principal padrão para todos os CREATE */
 .form-container {
   width: 680px;
+  max-width: 100%;
   background: #fff3eb;
   border-radius: 22px;
   padding: 40px 30px;
-  box-shadow: 5px 5px 0 rgba(112,73,54,.2);
+  box-shadow: 5px 5px 0 rgba(112, 73, 54, .2);
+  position: relative;
+  z-index: 1;
 }
 
-/* Título */
+/* Título padrão */
 .form-title {
   font-size: 30px;
   font-weight: 900;
   text-align: center;
   color: #704936;
   margin-bottom: 30px;
+}
+
+/* Mensagem de erro */
+.form-error {
+  background: #ffe1dc;
+  color: #9c3f35;
+  border: 2px solid #f3aaa0;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Formulário */
+.grupo-form {
+  width: 100%;
 }
 
 /* Campos do formulário */
@@ -75,6 +99,7 @@ body::after {
 .form-group input,
 .form-group textarea,
 .form-group select {
+  width: 100%;
   padding: 10px 14px;
   border-radius: 18px;
   border: 3px solid #a07d64;
@@ -82,27 +107,78 @@ body::after {
   color: #704936;
   font-weight: 700;
   font-size: 15px;
+  outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(112, 73, 54, .65);
 }
 
 textarea {
   min-height: 100px;
+  resize: vertical;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  box-shadow: 0 0 0 3px rgba(255,220,210,.7);
+  box-shadow: 0 0 0 3px rgba(255, 220, 210, .7);
 }
 
-/* Botões fofos */
+/* Upload */
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 18px 14px;
+  border: 3px dashed #a07d64;
+  border-radius: 18px;
+  background: #ffe8df;
+  cursor: pointer;
+  margin-bottom: 4px;
+  text-align: center;
+  color: #704936;
+  transition: 0.2s;
+}
+
+.upload-box:hover {
+  background: #ffd9cc;
+}
+
+.upload-box span,
+.upload-box strong {
+  font-weight: 900;
+  color: #704936;
+}
+
+.upload-box small {
+  font-weight: 700;
+  color: rgba(112, 73, 54, .75);
+}
+
+.upload-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.input-file {
+  display: none;
+}
+
+/* Botões padrão */
 .form-actions {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   margin-top: 25px;
 }
 
 .btn-save,
 .btn-cancel {
+  min-width: 160px;
   padding: 12px 24px;
   border-radius: 30px;
   border: none;
@@ -110,6 +186,11 @@ select:focus {
   font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
+  text-decoration: none;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-save {
@@ -119,6 +200,7 @@ select:focus {
 
 .btn-save:hover {
   background: #ffa6a6;
+  transform: translateY(-1px);
 }
 
 .btn-cancel {
@@ -129,27 +211,89 @@ select:focus {
 
 .btn-cancel:hover {
   background: #fef0ef;
+  transform: translateY(-1px);
 }
 
-/* Upload de múltiplas imagens */
-.upload-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-  border: 3px dashed #a07d64;
-  border-radius: 18px;
-  background: #ffe8df;
+/* Compatibilidade com nomes antigos */
+.btn-salvar {
+  min-width: 160px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 900;
+  font-size: 15px;
   cursor: pointer;
-  margin-bottom: 18px;
+  transition: 0.2s;
+  text-decoration: none;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #fcbaba;
+  color: #fff;
 }
 
-.upload-box:hover {
-  background: #ffd9cc;
+.btn-salvar:hover {
+  background: #ffa6a6;
+  transform: translateY(-1px);
 }
 
-.input-file {
-  display: none;
+.btn-cancelar {
+  min-width: 160px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  text-decoration: none;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #f98c8c;
+  border: 2px solid #f98c8c;
+}
+
+.btn-cancelar:hover {
+  background: #fef0ef;
+  transform: translateY(-1px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  body.form-page {
+    padding: 40px 16px;
+  }
+
+  .form-container {
+    padding: 32px 22px;
+  }
+
+  .form-title {
+    font-size: 26px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn-save,
+  .btn-cancel,
+  .btn-salvar,
+  .btn-cancelar {
+    width: 100%;
+  }
+
+  body.form-page::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  body.form-page::after {
+    width: 160px;
+    height: 120px;
+    right: -45px;
+  }
 }
