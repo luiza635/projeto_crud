@@ -17,16 +17,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $capa = $_FILES['capa'] ?? null;
 
     if ($titulo && $letra) {
-        $capa_nome = null;
+        $capaSalva = null;
         if ($capa && $capa['error'] === 0) {
             $ext = pathinfo($capa['name'], PATHINFO_EXTENSION);
-            $capa_nome = uniqid('capa_') . '.' . $ext;
-            move_uploaded_file($capa['tmp_name'], "../uploads/$capa_nome");
+            $nomeArquivo = uniqid('capa_') . '.' . $ext;
+            $pastaUploads = '../uploads/musicas/';
+            
+            if (!is_dir($pastaUploads)) {
+                mkdir($pastaUploads, 0755, true);
+            }
+
+            if (move_uploaded_file($capa['tmp_name'], $pastaUploads . $nomeArquivo)) {
+                $capaSalva = 'uploads/musicas/' . $nomeArquivo;
+            }
         }
 
         $sql = "INSERT INTO musicas (titulo, letra, link_ouvir, capa, grupo_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$titulo, $letra, $link_ouvir, $capa_nome, $id_grupo]);
+        $stmt->execute([$titulo, $letra, $link_ouvir, $capaSalva, $id_grupo]);
 
         header("Location: ../grupo.php?id_grupo=$id_grupo");
         exit();

@@ -103,7 +103,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
         <section class="mini-panel members-panel">
             <div class="mini-panel-header">
                 <h3 class="mini-panel-title">
-                    Membros <span>✿</span>
+                    Membros
                 </h3>
 
                 <a href="integrantes_crud/adicionar_membros.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">
@@ -172,7 +172,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
         <section class="mini-panel discography-panel">
             <div class="mini-panel-header">
                 <h3 class="mini-panel-title">
-                    Discografia <span>✿</span>
+                    Discografia
                 </h3>
 
                 <a href="musicas_crud/adicionar_musica.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">

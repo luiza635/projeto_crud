@@ -5,11 +5,9 @@ include_once "../includes/auth.php";
 $erro = "";
 
 $id_grupo = filter_input(INPUT_GET, 'id_grupo', FILTER_VALIDATE_INT);
-
 if (!$id_grupo) {
     $id_grupo = filter_input(INPUT_POST, 'id_grupo', FILTER_VALIDATE_INT);
 }
-
 if (!$id_grupo) {
     header("Location: ../index.php");
     exit();
@@ -22,11 +20,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $funcao = trim($_POST['funcao'] ?? '');
     $biografia = trim($_POST['biografia'] ?? '');
 
+    // TRATAMENTO DO UPLOAD DE FOTO
+    $fotoSalva = '';
+    if (!empty($_FILES['foto']['name'])) {
+        $arquivo = $_FILES['foto'];
+        $nomeArquivo = time() . '_' . basename($arquivo['name']);
+        $caminho = '../uploads/membros/' . $nomeArquivo;
+
+        if (!is_dir('../uploads/membros/')) {
+            mkdir('../uploads/membros/', 0755, true);
+        }
+
+        if (move_uploaded_file($arquivo['tmp_name'], $caminho)) {
+            $fotoSalva = 'uploads/membros/' . $nomeArquivo;
+        }
+    }
+
     if ($nome_real && $nome_artistico && $aniversario && $funcao) {
         $sql = "INSERT INTO integrantes 
-                (nome_real, nome_artistico, aniversario, funcao, biografia, grupo_id) 
-                VALUES (?, ?, ?, ?, ?, ?)";
-
+                (nome_real, nome_artistico, aniversario, funcao, biografia, grupo_id, foto) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             $nome_real,
@@ -34,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $aniversario,
             $funcao,
             $biografia,
-            $id_grupo
+            $id_grupo,
+            $fotoSalva
         ]);
 
         header("Location: ../grupo.php?id_grupo=" . urlencode($id_grupo));
@@ -73,11 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         class="grupo-form"
     >
 
-        <input 
-            type="hidden" 
-            name="id_grupo" 
-            value="<?= htmlspecialchars($id_grupo) ?>"
-        >
+        <input type="hidden" name="id_grupo" value="<?= htmlspecialchars($id_grupo) ?>">
 
         <div class="form-group">
             <label for="nome_real">Nome real:</label>
