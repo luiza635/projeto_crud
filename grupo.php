@@ -64,25 +64,101 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
     </div>
 
     <!-- Membros -->
-    <div class="descricao">
-        <h3>Membros</h3>
-        <a href="integrantes_crud/adicionar_membros.php?id_grupo=<?= $id_grupo; ?>" class="btn-save">Adicionar Membro</a>
+<section class="members-panel">
 
-        <?php foreach ($membros as $membro): ?>
-        <div class="group-card">
-            <div class="imagem-grupo">
-                <img src="assets/img/teasan.jpg" alt="<?= $membro->nome_artistico; ?>">
-            </div>
-            <div class="info-grupo">
-                <p><strong>Nome Artístico:</strong> <?= $membro->nome_artistico; ?></p>
-                <p><strong>Nome real:</strong> <?= $membro->nome_real; ?></p>
-                <p><strong>Função:</strong> <?= $membro->funcao; ?></p>
-                <a href="integrantes_crud/editar_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>" class="btn-save">Editar</a>
-                <a href="integrantes_crud/excluir_membros.php?id=<?= $membro->id; ?>&id_grupo=<?= $id_grupo; ?>" class="btn-cancel">Excluir</a>
-            </div>
-        </div>
-        <?php endforeach; ?>
+    <div class="members-panel-header">
+        <h3 class="members-panel-title">
+            Membros <span>✿</span>
+        </h3>
+
+        <a 
+            href="integrantes_crud/adicionar_membros.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" 
+            class="btn-add-member"
+        >
+            + Adicionar Membro
+        </a>
     </div>
+
+    <div class="members-list">
+
+        <?php if (empty($membros)): ?>
+
+            <p class="members-empty">Nenhum membro cadastrado ainda.</p>
+
+        <?php else: ?>
+
+            <?php foreach ($membros as $membro): ?>
+
+                <?php
+                    $fotoMembro = 'assets/img/login/gatinho.png';
+
+                    if (!empty($membro->foto)) {
+                        $foto = $membro->foto;
+
+                        if (
+                            strpos($foto, 'assets/') === 0 ||
+                            strpos($foto, 'uploads/') === 0 ||
+                            preg_match('/^https?:\/\//', $foto)
+                        ) {
+                            $fotoMembro = $foto;
+                        } else {
+                            $fotoMembro = 'assets/img/' . $foto;
+                        }
+                    }
+                ?>
+
+                <article class="member-card">
+
+                    <img 
+                        src="<?= htmlspecialchars($fotoMembro) ?>" 
+                        alt="<?= htmlspecialchars($membro->nome_artistico) ?>" 
+                        class="member-photo"
+                    >
+
+                    <div class="member-info">
+                        <h4><?= htmlspecialchars($membro->nome_artistico) ?></h4>
+
+                        <p>
+                            <strong>Nome real:</strong> 
+                            <?= htmlspecialchars($membro->nome_real) ?>
+                        </p>
+
+                        <p>
+                            <strong>Função:</strong> 
+                            <?= htmlspecialchars($membro->funcao) ?>
+                        </p>
+                    </div>
+
+                    <div class="member-actions">
+
+                        <a 
+                            href="integrantes_crud/editar_membros.php?id=<?= htmlspecialchars($membro->id) ?>&id_grupo=<?= htmlspecialchars($id_grupo) ?>" 
+                            class="member-icon edit-icon"
+                            title="Editar membro"
+                        >
+                            ✎
+                        </a>
+
+                        <a 
+                            href="integrantes_crud/excluir_membros.php?id=<?= htmlspecialchars($membro->id) ?>&id_grupo=<?= htmlspecialchars($id_grupo) ?>" 
+                            class="member-icon delete-icon"
+                            title="Excluir membro"
+                            onclick="return confirm('Tem certeza que deseja excluir este membro?')"
+                        >
+                            🗑
+                        </a>
+
+                    </div>
+
+                </article>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </div>
+
+</section>
 
     <!-- Discografia -->
     <div class="descricao">
