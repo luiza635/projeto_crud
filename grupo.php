@@ -68,7 +68,7 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
 
     <div class="members-panel-header">
         <h3 class="members-panel-title">
-            Membros <span>✿</span>
+            Membros
         </h3>
 
         <a 
@@ -90,7 +90,7 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
             <?php foreach ($membros as $membro): ?>
 
                 <?php
-                    $fotoMembro = 'assets/img/login/gatinho.png';
+                        $fotoMembro = 'assets/img/taesan.jpg';
 
                     if (!empty($membro->foto)) {
                         $foto = $membro->foto;

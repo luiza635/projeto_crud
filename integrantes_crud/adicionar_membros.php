@@ -1,43 +1,60 @@
-<?php 
+<?php
 include_once "../config/database.php";
 include_once "../includes/auth.php";
 
-$id_grupo = $_GET['id_grupo'] ?? null;
+$id_grupo = $_GET['id_grupo'] ?? $_POST['id_grupo'] ?? null;
 
 if (!$id_grupo) {
     header("Location: ../index.php");
     exit();
 }
 
-$erro = '';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome_real = trim($_POST['nome_real'] ?? '');
-    $nome_artistico = trim($_POST['nome_artistico'] ?? '');
-    $aniversario = trim($_POST['aniversario'] ?? '');
-    $funcao = trim($_POST['funcao'] ?? '');
-    $biografia = trim($_POST['biografia'] ?? '');
+    $nome_real = $_POST['nome_real'];
+    $nome_artistico = $_POST['nome_artistico'];
+    $aniversario = $_POST['aniversario'];
+    $funcao = $_POST['funcao'];
+    $biografia = $_POST['biografia'];
 
-    if ($nome_real && $nome_artistico && $aniversario && $funcao && $biografia) {
-        $sql = "INSERT INTO integrantes 
-                (nome_real, nome_artistico, aniversario, funcao, biografia, grupo_id) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+    $foto = null;
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            $nome_real,
-            $nome_artistico,
-            $aniversario,
-            $funcao,
-            $biografia,
-            $id_grupo
-        ]);
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $pastaUpload = "../uploads/membros/";
 
-        header("Location: ../index.php");
-        exit();
-    } else {
-        $erro = "Preencha todos os campos obrigatórios.";
+        if (!is_dir($pastaUpload)) {
+            mkdir($pastaUpload, 0777, true);
+        }
+
+        $extensao = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
+        $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (in_array($extensao, $extensoesPermitidas)) {
+            $nomeArquivo = uniqid("membro_", true) . "." . $extensao;
+            $caminhoCompleto = $pastaUpload . $nomeArquivo;
+
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $caminhoCompleto)) {
+                $foto = "uploads/membros/" . $nomeArquivo;
+            }
+        }
     }
+
+    $sql = "INSERT INTO integrantes 
+            (nome_real, nome_artistico, aniversario, funcao, biografia, foto, grupo_id) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $nome_real,
+        $nome_artistico,
+        $aniversario,
+        $funcao,
+        $biografia,
+        $foto,
+        $id_grupo
+    ]);
+
+    header("Location: ../grupo.php?id_grupo=" . $id_grupo);
+    exit();
 }
 ?>
 
@@ -49,105 +66,117 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Novo Integrante</title>
     <link rel="stylesheet" href="../assets/css/pg_criar.css?v=5">
 </head>
-
 <body class="form-page">
 
 <div class="form-container">
-    <h1 class="form-title">Novo Integrante</h1>
+    <h1 class="form-title">Adicionar Membro</h1>
 
-    <?php if (!empty($erro)): ?>
-        <div class="form-error"><?= htmlspecialchars($erro) ?></div>
-    <?php endif; ?>
+    <form action="adicionar_membros.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" method="POST" enctype="multipart/form-data" class="grupo-form">
+        <input type="hidden" name="id_grupo" value="<?= htmlspecialchars($id_grupo) ?>">
 
-    <form 
-        action="adicionar_membros.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" 
-        method="POST" 
-        enctype="multipart/form-data" 
-        class="grupo-form"
-    >
+        <label for="nome_real">Nome real:</label>
+        <input type="text" id="nome_real" name="nome_real" required>
 
-        <div class="form-group">
-            <label for="nome_real">Nome Real do Integrante</label>
-            <input 
-                type="text" 
-                id="nome_real" 
-                name="nome_real" 
-                placeholder="Ex.: Kim Namjoon"
-                required
-            >
+        <label for="nome_artistico">Nome artístico:</label>
+        <input type="text" id="nome_artistico" name="nome_artistico" required>
+
+        <label for="aniversario">Data de nascimento:</label>
+        <input type="date" id="aniversario" name="aniversario" required>
+
+        <label for="funcao">Função:</label>
+        <input type="text" id="funcao" name="funcao" required>
+
+        <label for="biografia">Biografia:</label>
+        <textarea id="biografia" name="biografia" rows="4"></textarea>
+
+        <label for="foto">Foto do membro:</label>
+        <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,.webp">
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-submit">Adicionar</button>
+            <a href="../grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-cancelar">Cancelar</a>
         </div>
-
-        <div class="form-group">
-            <label for="nome_artistico">Nome Artístico do Integrante</label>
-            <input 
-                type="text" 
-                id="nome_artistico" 
-                name="nome_artistico" 
-                placeholder="Ex.: RM"
-                required
-            >
-        </div>
-
-        <div class="form-group">
-            <label for="funcao">Função</label>
-            <select id="funcao" name="funcao" required>
-                <option value="" disabled selected>Selecione a função</option>
-                <option value="Vocalista">Vocalista</option>
-                <option value="Dançarino">Dançarino</option>
-                <option value="Compositor">Compositor</option>
-                <option value="Rapper">Rapper</option>
-                <option value="Líder">Líder</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="aniversario">Aniversário</label>
-            <input 
-                type="date" 
-                id="aniversario" 
-                name="aniversario" 
-                required
-            >
-        </div>
-
-        <div class="form-group">
-            <label for="foto">Foto do Integrante</label>
-
-            <label for="foto" class="upload-box">
-                <span class="upload-icon">☁</span>
-                <strong>Clique para enviar</strong>
-                <small>uma imagem</small>
-            </label>
-
-            <input 
-                type="file" 
-                id="foto" 
-                name="foto" 
-                accept="image/*" 
-                class="input-file"
-            >
-        </div>
-
-        <div class="form-group descricao-group">
-            <label for="biografia">Biografia</label>
-            <textarea 
-                id="biografia" 
-                name="biografia" 
-                placeholder="Fale sobre o integrante..."
-                required
-            ></textarea>
-        </div>
-
-        <div class="form-actions">
-            <a href="../index.php" class="btn-cancel">Cancelar</a>
-
-            <button type="submit" class="btn-save">
-                Salvar Integrante
-            </button>
-        </div>
-
     </form>
 </div>
+
+<style>
+body.form-page {
+    background: #f8efe2;
+    font-family: Arial, sans-serif;
+}
+
+.form-container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #fffaf3;
+    border-radius: 18px;
+    border: 2px solid #d9c2aa;
+    box-shadow: 0 8px 22px rgba(126, 92, 66, 0.10);
+}
+
+.form-title {
+    margin-bottom: 18px;
+    color: #8b684d;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.grupo-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: #8b684d;
+}
+
+.grupo-form input,
+.grupo-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #dcc6b0;
+    background: #fffaf3;
+    color: #5b3d2f;
+}
+
+.form-buttons {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn-submit {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: none;
+    background: #c69272;
+    color: #fffaf3;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background: #b07d5a;
+}
+
+.btn-cancelar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: #9b7659;
+    color: #fffaf3;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.btn-cancelar:hover {
+    background: #87614c;
+}
+</style>
 
 </body>
 </html>
