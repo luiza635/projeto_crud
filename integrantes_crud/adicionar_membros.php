@@ -58,11 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="form-container">
 
-    <!-- Botão Voltar igual ao grupo -->
-    <a href="../grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-voltar">
-        <i class="fa-solid fa-arrow-left"></i> Voltar
-    </a>
-
     <h1 class="form-title">Adicionar Membro</h1>
 
     <?php if (!empty($erro)): ?>
@@ -129,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-actions">
-            <a href="../grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-cancelar">Cancelar</a>
             <button type="submit" class="btn-salvar">Salvar Integrante</button>
         </div>
 
