@@ -47,7 +47,7 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
             <img src="assets/img/foto_boynextdoor.jpg" alt="<?= $grupo->nome; ?>">
         </div>
         <div class="info-grupo">
-            <h2><?= $grupo->nome; ?> <span>♡</span></h2>
+            <h2><?= $grupo->nome; ?></h2>
             <p><strong>Tipo:</strong> <?= $grupo->tipo_grupo; ?></p>
             <p><strong>Debut:</strong> <?= $grupo->debut; ?></p>
             <p><strong>Empresa:</strong> <?= $grupo->empresa; ?></p>

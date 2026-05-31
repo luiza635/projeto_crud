@@ -37,7 +37,7 @@ body.group-info::after {
   content: "";
   position: fixed;
   right: -80px;
-  bottom: -29px;
+  bottom: -30px;
   width: 230px;
   height: 170px;
   background-image: url("../img/login/ursinho.png");
@@ -64,7 +64,7 @@ body.group-info::after {
 
 /* Barra de endereço / detalhes */
 .details-container::after {
-  content: "‹  ›      crud.com/groups/detalhes";
+  content: "‹  ›      crud.com/groups/detalhes"; /* info → detalhes */
   position: absolute;
   top: 0;
   left: 0;
@@ -88,7 +88,6 @@ body.group-info::after {
   gap: 24px;
   margin-bottom: 26px;
   margin-top: 20px;
-  position: relative; /* necessário para centralizar o título */
 }
 
 /* Botão voltar */
@@ -105,12 +104,10 @@ body.group-info::after {
 
 /* Título centralizado */
 .details-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   font-size: 34px;
   font-weight: 900;
   text-transform: uppercase;
+  flex-grow: 1;
   text-align: center;
   margin: 0;
 }
@@ -176,12 +173,8 @@ body.group-info::after {
 
   .details-title {
     text-align: center;
-    position: static;
-    transform: none;
   }
 }
-
-/* Esconde aba do navegador falsa */
 .browser-tabs,
 .tab,
 .tab-one {
@@ -191,7 +184,6 @@ body.group-info::after {
 .browser-window {
     margin-top: 0 !important;
 }
-
 .topo {
     position: relative;
     display: flex;
@@ -222,124 +214,10 @@ body.group-info::after {
 
 .titulo {
     margin: 0;
+    text-align: center;
     color: #704936;
     font-size: 34px;
     font-weight: 900;
     text-transform: uppercase;
     line-height: 1;
-}
-/* Botões estilizados para Membros e Discografia */
-.btn-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #704936;
-    color: #fff9ef;
-    padding: 10px 20px;
-    border-radius: 24px;
-    font-weight: 900;
-    text-decoration: none;
-    font-size: 16px;
-    box-shadow: 3px 3px 0 rgba(112,73,54,0.25);
-    transition: 0.2s ease;
-}
-
-.btn-action:hover {
-    background: #5e3a2a;
-    transform: translateY(-1px);
-}
-
-/* Grid de itens (Membros / Discografia) */
-.items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-}
-
-/* Cards internos */
-.item-card {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    background: #e7b8af;
-    border: 3px solid #704936;
-    border-radius: 20px;
-    padding: 15px;
-}
-
-.item-photo {
-    width: 92px;
-    height: 92px;
-    flex-shrink: 0;
-}
-
-.item-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 3px solid #704936;
-    border-radius: 16px;
-}
-
-.item-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.item-info p {
-    font-size: 15px;
-    font-weight: 700;
-    color: #704936;
-    margin-bottom: 5px;
-}
-
-.item-info strong {
-    font-weight: 900;
-}
-
-.item-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.btn-small {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 900;
-    padding: 8px 14px;
-    border-radius: 20px;
-    transition: 0.2s ease;
-}
-
-.btn-edit {
-    background: #fff8e9;
-    color: #704936;
-    border: 2px solid #704936;
-}
-
-.btn-delete {
-    background: #704936;
-    color: #fff9ef;
-    border: 2px solid #704936;
-}
-
-.btn-small:hover {
-    transform: translateY(-1px);
-}
-
-/* Mensagem caso não haja itens */
-.empty-message {
-    font-size: 16px;
-    font-weight: 800;
-    color: #704936;
-    background: #f3d4cc;
-    border: 3px solid #704936;
-    border-radius: 18px;
-    padding: 14px 18px;
 }
