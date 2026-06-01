@@ -78,7 +78,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
     <div class="group-card main-group-card">
         <div class="imagem-grupo">
-            <img src="<?= e($imagemGrupo) ?>" alt="<?= e($grupo->nome ?? 'Grupo') ?>">
+            <img src="<?= $grupo->imagem ?? $imagemGrupo ?>" alt="<?= e($grupo->nome ?? 'Grupo') ?>">
         </div>
 
         <div class="info-grupo">

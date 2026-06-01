@@ -12,10 +12,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $membros = trim($_POST['membros'] ?? '');
     $descricao = trim($_POST['descricao'] ?? '');
 
+    $fotoSalva = '';
+    if (!empty($_FILES['imagem']['name'])) {
+        $arquivo = $_FILES['imagem'];
+        $nomeArquivo = time() . '_' . basename($arquivo['name']);
+        $caminho = 'uploads/grupos/' . $nomeArquivo;
+
+        if (!is_dir('uploads/grupos/')) {
+            mkdir('uploads/grupos/', 0755, true);
+        }
+
+        if (move_uploaded_file($arquivo['tmp_name'], $caminho)) {
+            $fotoSalva = 'uploads/grupos/' . $nomeArquivo;
+        }
+    }
+
     if ($nome && $tipo && $debut && $empresa && $membros) {
         $sql = "INSERT INTO grupos 
-                (nome, debut, empresa, numero_membros, tipo_grupo, descricao) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+                (nome, debut, empresa, numero_membros, tipo_grupo, descricao, imagem) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -24,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $empresa,
             $membros,
             $tipo,
-            $descricao
+            $descricao, 
+            $fotoSalva
         ]);
 
         header("Location: index.php");
@@ -113,9 +129,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-            <label for="imagens">Imagens do Grupo</label>
+            <label for="imagem">Imagem do Grupo</label>
 
-            <label for="imagens" class="upload-box">
+            <label for="imagem" class="upload-box">
                 <span class="upload-icon">☁</span>
                 <strong>Clique ou arraste para enviar</strong>
                 <small>você pode enviar várias imagens</small>
@@ -123,11 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <input 
                 type="file" 
-                id="imagens" 
-                name="imagens[]" 
+                id="imagem" 
+                name="imagem" 
                 class="input-file" 
                 accept="image/*" 
-                multiple
             >
         </div>
 
@@ -150,6 +165,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </form>
 </div>
-
 </body>
 </html>
