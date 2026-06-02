@@ -1,6 +1,6 @@
 <?php 
-include_once "../config/database.php";
-include_once "../includes/auth.php";
+include_once "../../src/config/database.php";
+include_once "../../src/includes/auth.php";
 
 $erro = '';
 $id_grupo = filter_input(INPUT_GET, 'id_grupo', FILTER_VALIDATE_INT);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$titulo, $letra, $link_ouvir, $capaSalva, $id_grupo]);
 
-        header("Location: ../grupo.php?id_grupo=$id_grupo");
+        header("Location: ../crud_grupos/grupo.php?id_grupo=$id_grupo");
         exit();
     } else {
         $erro = "Preencha todos os campos obrigatórios.";

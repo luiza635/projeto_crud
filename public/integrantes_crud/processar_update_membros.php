@@ -1,6 +1,6 @@
 <?php 
-require_once '../config/database.php';
-require_once '../includes/auth.php';
+require_once '../../src/config/database.php';
+require_once '../../src/includes/auth.php';
 
 // Verifica se o ID do membro foi enviado
 if (!isset($_POST['id']) || !isset($_POST['id_grupo'])) {
@@ -49,6 +49,6 @@ if ($fotoSalva) {
 }
 
 // Redireciona de volta para a página do grupo
-header('Location: ../grupo.php?id_grupo=' . $id_grupo);
+header('Location: ../crud_grupos/grupo.php?id_grupo=' . $id_grupo);
 exit;
 ?>

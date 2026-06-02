@@ -1,6 +1,6 @@
 <?php
-include_once 'config/database.php';
-include_once "includes/auth.php";
+include_once '../../src/config/database.php';
+include_once '../../src/includes/auth.php';
 
 $id_grupo = $_POST['id_grupo'];
 $nome = $_POST['nome'];

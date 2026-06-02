@@ -1,6 +1,6 @@
 <?php
-require_once '../config/database.php';
-require_once '../includes/auth.php';
+require_once '../../src/config/database.php';
+require_once '../../src/includes/auth.php';
 
 try {
     // Verifica se os parâmetros foram passados
@@ -31,13 +31,13 @@ try {
     // Mensagem opcional de sucesso via session ou GET
     $_SESSION['mensagem'] = "Membro deletado com sucesso.";
 
-    header("Location: ../grupo.php?id_grupo=$id_grupo");
+    header("Location: ../crud_grupos/grupo.php?id_grupo=$id_grupo");
     exit;
 
 } catch (Exception $e) {
     // Redireciona com erro na URL ou exibe mensagem
     $erro = urlencode($e->getMessage());
-    header("Location: ../grupo.php?id_grupo=" . ($_GET['id_grupo'] ?? '') . "&erro=$erro");
+    header("Location: ../crud_grupos/grupo.php?id_grupo=" . ($_GET['id_grupo'] ?? '') . "&erro=$erro");
     exit;
 }
 ?>

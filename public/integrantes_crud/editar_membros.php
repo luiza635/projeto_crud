@@ -1,6 +1,6 @@
 <?php
-require_once '../config/database.php';
-require_once '../includes/auth.php';
+require_once '../../src/config/database.php';
+require_once '../../src/includes/auth.php';
 
 if (!isset($_GET['id'])) {
     header('Location: index.php');
@@ -22,7 +22,7 @@ $membro = $stmt->fetch(PDO::FETCH_OBJ);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualizar Integrante</title>
-    <link rel="stylesheet" href="../\assets/css/pg_criar.css">
+    <link rel="stylesheet" href="../assets/css/pg_criar.css">
 </head>
 
 <body class="form-page">

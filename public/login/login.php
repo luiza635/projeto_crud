@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+require_once '../../src/config/database.php';
 session_start();
 
 $error = '';
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
 
-        header('Location: ../index.php?status=sucesso');
+        header('Location: ../crud_grupos/index.php?status=sucesso');
         exit;
     } else {
         $error = 'Email ou senha incorretos.';

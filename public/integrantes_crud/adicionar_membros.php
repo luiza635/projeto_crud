@@ -1,6 +1,6 @@
 <?php
-include_once "../config/database.php";
-include_once "../includes/auth.php";
+include_once "../../src/config/database.php";
+include_once "../../src/includes/auth.php";
 
 $erro = "";
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fotoSalva
         ]);
 
-        header("Location: ../grupo.php?id_grupo=" . urlencode($id_grupo));
+        header("Location: ../crud_grupos/grupo.php?id_grupo=" . urlencode($id_grupo));
         exit();
     } else {
         $erro = "Preencha todos os campos obrigatórios.";

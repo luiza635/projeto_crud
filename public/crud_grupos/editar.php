@@ -1,6 +1,6 @@
 <?php 
-include_once 'config/database.php';
-include_once "includes/auth.php";
+include_once '../../src/config/database.php';
+include_once '../../src/includes/auth.php';
 
 if (!isset($_GET['id_grupo'])) {
     header("Location: index.php");
@@ -18,7 +18,7 @@ $grupo = $stmt->fetch(PDO::FETCH_OBJ);
 <head>
     <meta charset="UTF-8">
     <title>Editar Grupo</title>
-    <link rel="stylesheet" href="/PROJETO_CRUD/assets/css/pg_criar.css?v=4">
+    <link rel="stylesheet" href="/PROJETO_CRUD/public/assets/css/pg_criar.css?v=4">
 </head>
 <body class="form-page">
 

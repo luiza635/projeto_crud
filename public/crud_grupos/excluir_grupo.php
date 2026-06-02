@@ -1,5 +1,5 @@
 <?php 
-require_once 'config/database.php';
+require_once '../../src/config/database.php';
 
 if (!isset($_GET['id_grupo'])) {
     header("Location: index.php");

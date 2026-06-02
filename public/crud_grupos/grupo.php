@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/auth.php';
-require_once 'config/database.php';
+require_once '../../src/includes/auth.php';
+require_once '../../src/config/database.php';
 
 if (!isset($_GET['id_grupo'])) {
     header('Location: index.php');
@@ -59,7 +59,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Grupo - <?= e($grupo->nome ?? 'Grupo') ?></title>
 
-    <link rel="stylesheet" href="/PROJETO_CRUD/assets/css/pg_grupo.css?v=5">
+    <link rel="stylesheet" href="../assets/css/pg_grupo.css?v=5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous"/>
 </head>
 
@@ -78,7 +78,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
     <div class="group-card main-group-card">
         <div class="imagem-grupo">
-            <img src="<?= $grupo->imagem ?? $imagemGrupo ?>" alt="<?= e($grupo->nome ?? 'Grupo') ?>">
+            <img src="../<?= $grupo->imagem ?? $imagemGrupo ?>" alt="<?= e($grupo->nome ?? 'Grupo') ?>">
         </div>
 
         <div class="info-grupo">
@@ -106,7 +106,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
                     Membros
                 </h3>
 
-                <a href="integrantes_crud/adicionar_membros.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">
+                <a href="../integrantes_crud/adicionar_membros.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">
                     + Adicionar Membro
                 </a>
             </div>
@@ -120,7 +120,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
                     <?php foreach ($membros as $membro): ?>
                         <?php
-                            $fotoMembro = caminhoImagem($membro->foto ?? '', 'assets/img/login/gatinho.png');
+                            $fotoMembro = "../" . caminhoImagem($membro->foto ?? '', 'assets/img/login/gatinho.png');
                         ?>
 
                         <article class="member-card">
@@ -146,7 +146,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
                             <div class="mini-actions">
                                 <a
-                                    href="integrantes_crud/editar_membros.php?id=<?= e($membro->id) ?>&id_grupo=<?= e($id_grupo) ?>"
+                                    href="../integrantes_crud/editar_membros.php?id=<?= e($membro->id) ?>&id_grupo=<?= e($id_grupo) ?>"
                                     class="item-icon edit-icon"
                                     title="Editar membro"
                                 >
@@ -154,7 +154,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
                                 </a>
 
                                 <a
-                                    href="integrantes_crud/excluir_membros.php?id=<?= e($membro->id) ?>&id_grupo=<?= e($id_grupo) ?>"
+                                    href="../integrantes_crud/excluir_membros.php?id=<?= e($membro->id) ?>&id_grupo=<?= e($id_grupo) ?>"
                                     class="item-icon delete-icon"
                                     title="Excluir membro"
                                     onclick="return confirm('Tem certeza que deseja excluir este membro?')"
@@ -175,7 +175,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
                     Discografia
                 </h3>
 
-                <a href="musicas_crud/adicionar_musica.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">
+                <a href="../musicas_crud/adicionar_musica.php?id_grupo=<?= e($id_grupo) ?>" class="btn-add-mini">
                     + Adicionar Música
                 </a>
             </div>
@@ -189,7 +189,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
                     <?php foreach ($musicas as $musica): ?>
                         <?php
-                            $capaMusica = caminhoImagem($musica->capa ?? '', 'assets/img/teasan.jpg');
+                            $capaMusica = "../" . caminhoImagem($musica->capa ?? '', '../assets/img/teasan.jpg');
                         ?>
 
                         <article class="music-card">
@@ -221,7 +221,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 
                             <div class="mini-actions">
                                 <a
-                                    href="musicas_crud/editar_musica.php?id=<?= e($musica->id) ?>&id_grupo=<?= e($id_grupo) ?>"
+                                    href="public/musicas_crud/editar_musica.php?id=<?= e($musica->id) ?>&id_grupo=<?= e($id_grupo) ?>"
                                     class="item-icon edit-icon"
                                     title="Editar música"
                                 >
@@ -229,7 +229,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
                                 </a>
 
                                 <a
-                                    href="musicas_crud/excluir_musica.php?id=<?= e($musica->id) ?>&id_grupo=<?= e($id_grupo) ?>"
+                                    href="../musicas_crud/excluir_musica.php?id=<?= e($musica->id) ?>&id_grupo=<?= e($id_grupo) ?>"
                                     class="item-icon delete-icon"
                                     title="Excluir música"
                                     onclick="return confirm('Tem certeza que deseja excluir esta música?')"
@@ -243,10 +243,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
                 <?php endif; ?>
             </div>
         </section>
-
     </div>
-
 </div>
-
 </body>
 </html>
