@@ -1,6 +1,6 @@
 <?php
-require_once '../../src/includes/auth.php';
-require_once '../../src/config/database.php';
+require_once '../src/includes/auth.php';
+require_once '../src/config/database.php';
 
 $sql = "SELECT * FROM grupos";
 $stmt = $pdo->prepare($sql);
@@ -14,7 +14,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Grupos de K-pop</title>
 
-    <link rel="stylesheet" href="../assets/css/pg_index.css?v=2">
+    <link rel="stylesheet" href="assets/css/pg_index.css?v=2">
 
     <link
         rel="stylesheet"
@@ -44,7 +44,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="window-actions">
                     <img
-                        src="../assets/img/login/mensagens.png"
+                        src="assets/img/login/mensagens.png"
                         alt="Ícone de mensagens"
                         class="mensagens-icon"
                     >
@@ -65,7 +65,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= htmlspecialchars($_SESSION['usuario_nome'] ?? 'usuário') ?>
                         </span>
 
-                        <a href="../login/logout.php" class="btn-sair">
+                        <a href="login/logout.php" class="btn-sair">
                             sair
                         </a>
                     </div>
@@ -74,7 +74,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <section class="crud-actions">
 
-                    <a href="criar_grupo.php" class="btn-adicionar">
+                    <a href="crud_grupos/criar_grupo.php" class="btn-adicionar">
                         + novo grupo
                     </a>
 
@@ -119,7 +119,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="acoes">
 
                                             <a
-                                                href="editar.php?id_grupo=<?= $grupo['id'] ?>"
+                                                href="crud_grupos/editar.php?id_grupo=<?= $grupo['id'] ?>"
                                                 class="btn-acao btn-editar"
                                                 title="Editar grupo"
                                             >
@@ -127,7 +127,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             </a>
 
                                             <a
-                                                href="excluir_grupo.php?id_grupo=<?= $grupo['id'] ?>"
+                                                href="crud_grupos/excluir_grupo.php?id_grupo=<?= $grupo['id'] ?>"
                                                 class="btn-acao btn-excluir"
                                                 title="Excluir grupo"
                                                 onclick="return confirm('Tem certeza que deseja excluir este grupo?')"
@@ -136,7 +136,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             </a>
 
                                             <a
-                                                href="grupo.php?id_grupo=<?= $grupo['id'] ?>"
+                                                href="crud_grupos/grupo.php?id_grupo=<?= $grupo['id'] ?>"
                                                 class="btn-acao btn-detalhes"
                                                 title="Detalhes do grupo"
                                             >
@@ -168,7 +168,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
         <div class="foto-direita">
-            <img src="../assets/img/login/ursinho.png" alt="Imagem do ursinho">
+            <img src="assets/img/login/ursinho.png" alt="Imagem do ursinho">
         </div>
 
         <div class="right-palette">

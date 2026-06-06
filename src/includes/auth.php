@@ -2,6 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php?status=nao_logado');
+    header('Location: ../../login/login.php?status=nao_logado');
     exit;
 }

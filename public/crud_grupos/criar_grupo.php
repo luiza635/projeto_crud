@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fotoSalva
         ]);
 
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     } else {
         $erro = "Preencha todos os campos obrigatórios.";
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Novo Grupo</title>
-    <link rel="stylesheet" href="/PROJETO_CRUD/public/assets/css/pg_criar.css?v=5">
+    <link rel="stylesheet" href="../assets/css/pg_criar.css?v=5">
 </head>
 
 <body class="form-page">

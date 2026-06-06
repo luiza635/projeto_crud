@@ -68,7 +68,7 @@ $imagemGrupo = caminhoImagem($grupo->imagem ?? ($grupo->foto ?? ''), 'assets/img
 <div class="details-container">
 
     <div class="details-header">
-        <a href="index.php" class="btn-back">
+        <a href="../index.php" class="btn-back">
             <i class="fa-solid fa-arrow-left"></i>
             Voltar
         </a>

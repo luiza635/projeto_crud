@@ -16,9 +16,9 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: projeto_crud
-      MARIADB_USER: kpop
-      MARIADB_PASSWORD: kpop123
+      MARIADB_DATABASE: ${BD_DATABASE}
+      MARIADB_USER: ${BD_USERNAME}
+      MARIADB_PASSWORD: ${BD_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
@@ -38,8 +38,8 @@ services:
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: banco
-      PMA_PORT: 3306
+      PMA_HOST: ${BD_HOST}
+      PMA_PORT: ${BD_PORTA}
     depends_on:
       banco:
         condition: service_healthy
