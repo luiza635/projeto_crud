@@ -6,6 +6,11 @@ services:
       - "8080:80"
     volumes:
       - ./:/var/www/html
+    environment:
+      BD_HOST: ${BD_HOST}
+      BD_PORTA: ${BD_PORTA}
+      BD_USERNAME: ${BD_USERNAME}
+      BD_PASSWORD: ${BD_PASSWORD}
     depends_on:
       banco:
         condition: service_healthy
