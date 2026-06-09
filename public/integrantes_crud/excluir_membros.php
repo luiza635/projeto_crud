@@ -1,43 +1,28 @@
 <?php
-require_once '../../src/config/database.php';
 require_once '../../src/includes/auth.php';
+require_once '../../src/config/database.php';
 
-try {
-    // Verifica se os parâmetros foram passados
-    if (!isset($_GET['id']) || !isset($_GET['id_grupo'])) {
-        throw new Exception("Parâmetros inválidos.");
-    }
-
-    $id_membro = filter_var($_GET['id'], FILTER_VALIDATE_INT);
-    $id_grupo  = filter_var($_GET['id_grupo'], FILTER_VALIDATE_INT);
-
-    if (!$id_membro || !$id_grupo) {
-        throw new Exception("ID inválido.");
-    }
-
-    // Verifica se o membro realmente existe
-    $stmt = $pdo->prepare("SELECT id FROM integrantes WHERE id = ? AND grupo_id = ?");
-    $stmt->execute([$id_membro, $id_grupo]);
-    $membroExiste = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$membroExiste) {
-        throw new Exception("Membro não encontrado neste grupo.");
-    }
-
-    // Deleta o membro
-    $stmt = $pdo->prepare("DELETE FROM integrantes WHERE id = ? AND grupo_id = ?");
-    $stmt->execute([$id_membro, $id_grupo]);
-
-    // Mensagem opcional de sucesso via session ou GET
-    $_SESSION['mensagem'] = "Membro deletado com sucesso.";
-
-    header("Location: ../crud_grupos/grupo.php?id_grupo=$id_grupo");
-    exit;
-
-} catch (Exception $e) {
-    // Redireciona com erro na URL ou exibe mensagem
-    $erro = urlencode($e->getMessage());
-    header("Location: ../crud_grupos/grupo.php?id_grupo=" . ($_GET['id_grupo'] ?? '') . "&erro=$erro");
+/* Verifica se recebeu o id do membro e o id do grupo */
+if (!isset($_GET['id']) || !isset($_GET['id_grupo'])) {
+    header("Location: ../index.php");
     exit;
 }
+
+$id_membro = (int) $_GET['id'];
+$id_grupo = (int) $_GET['id_grupo'];
+
+/* Se algum id estiver errado, volta para a página inicial */
+if ($id_membro <= 0 || $id_grupo <= 0) {
+    header("Location: ../index.php");
+    exit;
+}
+
+/* Exclui o integrante somente se ele pertencer ao grupo correto */
+$sql = "DELETE FROM integrantes WHERE id = ? AND grupo_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id_membro, $id_grupo]);
+
+/* Volta para os detalhes do grupo */
+header("Location: ../crud_grupos/grupo.php?id_grupo=" . $id_grupo);
+exit;
 ?>

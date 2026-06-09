@@ -2,135 +2,156 @@
 require_once '../../src/config/database.php';
 require_once '../../src/includes/auth.php';
 
-if (!isset($_GET['id'])) {
-    header('Location: index.php');
+if (!isset($_GET['id']) || !isset($_GET['id_grupo'])) {
+    header("Location: ../index.php");
     exit;
 }
 
+$id = $_GET['id'];
 $id_grupo = $_GET['id_grupo'];
 
-$id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM integrantes WHERE id = ?");
 $stmt->execute([$id]);
 $membro = $stmt->fetch(PDO::FETCH_OBJ);
 
+if (!$membro) {
+    header("Location: ../crud_grupos/grupo.php?id_grupo=" . urlencode($id_grupo));
+    exit;
+}
+
+$funcaoAtual = strtolower($membro->funcao ?? '');
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Integrante</title>
-    <link rel="stylesheet" href="../assets/css/pg_criar.css">
+    <title>Editar Membro</title>
+    <link rel="stylesheet" href="../assets/css/pg_criar.css?v=10">
 </head>
 
 <body class="form-page">
 
-    <main class="form-card">
+    <div class="form-container">
 
-        <div class="form-top">
-            <a href="index.php" class="btn-voltar">←</a>
-
-            <h1 class="form-title">Atualizar informações do Integrante</h1>
-
-            <span class="heart-icon">♡</span>
-        </div>
+        <h1 class="form-title">Editar Membro</h1>
 
         <form action="processar_update_membros.php" method="POST" enctype="multipart/form-data" class="grupo-form">
-            <input type="hidden" name="id" value="<?= $membro->id; ?>">
-            <input type="hidden" name="id_grupo" value="<?= $id_grupo; ?>">
+
+            <input type="hidden" name="id" value="<?= htmlspecialchars($membro->id) ?>">
+            <input type="hidden" name="id_grupo" value="<?= htmlspecialchars($id_grupo) ?>">
 
             <div class="form-group">
-                <label for="nome_real">Nome real do Integrante</label>
-
+                <label for="nome_real">Nome real:</label>
                 <input 
                     type="text" 
                     id="nome_real" 
                     name="nome_real" 
-                    value="<?= $membro->nome_real ?>"
+                    value="<?= htmlspecialchars($membro->nome_real) ?>" 
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="nome_artistico">Nome artistico do Integrante</label>
-
+                <label for="nome_artistico">Nome artístico:</label>
                 <input 
                     type="text" 
                     id="nome_artistico" 
                     name="nome_artistico" 
-                    value="<?= $membro->nome_artistico; ?>"
+                    value="<?= htmlspecialchars($membro->nome_artistico) ?>" 
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="funcao">Tipo</label>
-
-                <select id="funcao" name="funcao" required>
-                    <option value="" disabled selected>Selecione a função</option>
-                    <option value="vocalista" <?= $membro->funcao === 'vocalista' ? 'selected' : '' ?>>Vocalista</option>
-                    <option value="dançarino" <?= $membro->funcao === 'dançarino' ? 'selected' : '' ?>>Dançarino</option>
-                    <option value="compositor" <?= $membro->funcao === 'compositor' ? 'selected' : '' ?>>Compositor</option>
-                    <option value="rapper" <?= $membro->funcao === 'rapper' ? 'selected' : '' ?>>Rapper</option>
-                    <option value="líder" <?= $membro->funcao === 'líder' ? 'selected' : '' ?>>Líder</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="aniversario">Aniversário</label>
-
+                <label for="aniversario">Data de nascimento:</label>
                 <input 
                     type="date" 
                     id="aniversario" 
                     name="aniversario" 
-                    value="<?= $membro->aniversario; ?>"
-                    placeholder="Ex.: 2020" 
-                    required
+                    value="<?= htmlspecialchars($membro->aniversario) ?>"
                 >
             </div>
 
             <div class="form-group">
-                <label for="foto">Foto</label>
+                <label for="funcao">Função:</label>
+                <select id="funcao" name="funcao" required>
+                    <option value="" disabled>Selecione a função</option>
+
+                    <option value="Vocalista" <?= $funcaoAtual == 'vocalista' ? 'selected' : '' ?>>
+                        Vocalista
+                    </option>
+
+                    <option value="Dançarino" <?= $funcaoAtual == 'dançarino' ? 'selected' : '' ?>>
+                        Dançarino
+                    </option>
+
+                    <option value="Compositor" <?= $funcaoAtual == 'compositor' ? 'selected' : '' ?>>
+                        Compositor
+                    </option>
+
+                    <option value="Rapper" <?= $funcaoAtual == 'rapper' ? 'selected' : '' ?>>
+                        Rapper
+                    </option>
+
+                    <option value="Líder" <?= $funcaoAtual == 'líder' || $funcaoAtual == 'lider' ? 'selected' : '' ?>>
+                        Líder
+                    </option>
+
+                    <option value="Visual" <?= $funcaoAtual == 'visual' ? 'selected' : '' ?>>
+                        Visual
+                    </option>
+
+                    <option value="Maknae" <?= $funcaoAtual == 'maknae' ? 'selected' : '' ?>>
+                        Maknae
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="biografia">Biografia:</label>
+                <textarea 
+                    id="biografia" 
+                    name="biografia" 
+                    placeholder="Fale um pouco sobre o integrante..."
+                ><?= htmlspecialchars($membro->biografia) ?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto do membro:</label>
 
                 <label for="foto" class="upload-box">
                     <span class="upload-icon">☁</span>
-                    <strong>Clique para enviar</strong>
-                    <small>uma imagem</small>
+                    <span class="upload-title">Clique para enviar</span>
+                    <span class="upload-subtitle">uma nova imagem do integrante</span>
                 </label>
 
                 <input 
                     type="file" 
                     id="foto" 
                     name="foto" 
-                    accept="image/*" 
-                    class="input-file"
+                    class="input-file" 
+                    accept="image/*"
                 >
-            </div>
 
-            <div class="form-group descricao-group">
-                <label for="biografia">Biografia</label>
-
-                <textarea 
-                    id="biografia" 
-                    name="biografia" 
-                    placeholder="Fale sobre o integrante..."
-                    required
-                ><?= $membro->biografia; ?></textarea>
+                <?php if (!empty($membro->foto)): ?>
+                    <small class="form-hint">Foto atual cadastrada. Envie outra apenas se quiser trocar.</small>
+                <?php endif; ?>
             </div>
 
             <div class="form-actions">
-                <a href="index.php" class="btn-cancelar">Cancelar</a>
+                <a href="../crud_grupos/grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-cancel">
+                    Cancelar
+                </a>
 
-                <button type="submit" class="btn-salvar">
-                    Fazer alterações
+                <button type="submit" class="btn-save">
+                    Salvar Integrante
                 </button>
             </div>
 
         </form>
 
-        <span class="sparkle">✦</span>
-    </main>
+    </div>
+
 </body>
 </html>

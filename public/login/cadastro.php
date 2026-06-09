@@ -1,33 +1,43 @@
 <?php
-require_once "../../src/config/database.php";
+require_once '../../src/config/database.php';
+
+session_start();
 
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $nome = trim($_POST['nome'] ?? '');
-    $senha = $_POST['senha'] ?? '';
     $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
 
-    if ($nome && $senha && $email) {
+    if ($nome == '' || $email == '' || $senha == '') {
 
-        $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? LIMIT 1");
+        $erro = "Todos os campos são obrigatórios.";
+
+    } else {
+
+        $sql = "SELECT id FROM usuarios WHERE email = ?";
+        $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
+
         $usuarioExiste = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuarioExiste) {
+
             $erro = "Esse email já está cadastrado.";
+
         } else {
+
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha_hash) VALUES (?, ?, ?)");
+            $sql = "INSERT INTO usuarios (nome, email, senha_hash) VALUES (?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
             $stmt->execute([$nome, $email, $senha_hash]);
 
-            header('Location: login.php');
+            header("Location: login.php");
             exit;
         }
-
-    } else {
-        $erro = "Todos os campos são obrigatórios.";
     }
 }
 ?>
@@ -36,36 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+
     <title>Cadastro</title>
 
-    <link rel="stylesheet" href="../assets/css/style.css?v=52">
+    <link rel="stylesheet" href="../assets/css/style.css?v=100">
 </head>
 
 <body class="login-body">
 
-    <main class="desktop-login">
+    <main class="desktop-login cadastro-page">
 
         <section class="browser-window cadastro-window">
 
-            <div class="browser-tabs">
-                <span class="tab tab-one"></span>
-            </div>
-
             <div class="browser-topbar">
-
-                <div class="browser-arrows">
-                    <span>‹</span>
-                    <span>›</span>
-                </div>
 
                 <div class="address-bar">
                     crud.com/cadastro
                 </div>
 
                 <div class="window-actions">
-                    <img
-                        src="../assets/img/login/mensagens.png"
-                        alt="Ícone de mensagens"
+                    <img 
+                        src="../assets/img/login/mensagens.png" 
+                        alt="Ícone de mensagens" 
                         class="mensagens-icon"
                     >
                 </div>
@@ -82,45 +84,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <?php if (!empty($erro)): ?>
                         <div class="error">
-                            <?php echo htmlspecialchars($erro); ?>
+                            <?= htmlspecialchars($erro) ?>
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="cadastro.php" class="cadastro-form">
+                    <form method="POST" action="cadastro.php" class="cadastro-form">
 
                         <div class="cadastro-field">
                             <label for="nome">nome:</label>
-                            <input
-                                type="text"
-                                name="nome"
-                                id="nome"
+
+                            <input 
+                                type="text" 
+                                name="nome" 
+                                id="nome" 
                                 required
                             >
                         </div>
 
                         <div class="cadastro-field">
                             <label for="email">email:</label>
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
+
+                            <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
                                 required
                             >
                         </div>
 
                         <div class="cadastro-field">
                             <label for="senha">senha:</label>
-                            <input
-                                type="password"
-                                name="senha"
-                                id="senha"
+
+                            <input 
+                                type="password" 
+                                name="senha" 
+                                id="senha" 
                                 required
                             >
                         </div>
 
                         <div class="login-buttons cadastro-buttons">
-                            <a href="login.php" class="btn-small btn-link">voltar</a>
-                            <button type="submit" class="btn-small">cadastrar</button>
+
+                            <a href="login.php" class="btn-small btn-link">
+                                voltar
+                            </a>
+
+                            <button type="submit" class="btn-small">
+                                cadastrar
+                            </button>
+
                         </div>
 
                     </form>

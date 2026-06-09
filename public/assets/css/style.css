@@ -1,54 +1,35 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fff7fb;
-    color: #2b1723;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 a {
     text-decoration: none;
 }
 
-.container {
-    width: min(1100px, 92%);
-    margin: 35px auto;
-}
-
-.page-title {
-    font-size: 34px;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    color: #77536b;
-    margin-bottom: 28px;
-}
-
-/* LOGIN */
-
+/* FUNDO DAS PÁGINAS LOGIN E CADASTRO */
 .login-body {
     min-height: 100vh;
     overflow: hidden;
     background: #f3d4c8;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     color: #704936;
 }
 
+/* ÁREA PRINCIPAL */
 .desktop-login {
     position: relative;
     min-height: 100vh;
     width: 100%;
+    padding: 28px 115px 55px 140px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 28px 115px 55px 140px;
 
     background:
         radial-gradient(circle at 18% 72%, rgba(255, 247, 226, .45) 0 7%, transparent 8%),
@@ -56,57 +37,21 @@ a {
         linear-gradient(135deg, #f5d8cd 0%, #f1cfc4 50%, #edc8bd 100%);
 }
 
-/* GATINHO */
-
+/* GATINHO DO CANTO */
 .desktop-login::before {
     content: "";
     position: absolute;
-
     top: -30px;
     left: -8px;
-
     width: 140px;
     height: 140px;
-
     background-image: url("../img/login/gatinho.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-
-    opacity: 1;
-    pointer-events: none;
 }
 
-/* IMAGEM DO URSINHO */
-
-.foto-direita {
-    position: absolute;
-
-    top: 390px;
-    right: -50px;
-
-    width: 235px;
-    height: 145px;
-
-    background: transparent;
-    border: none;
-    border-radius: 0;
-
-    overflow: visible;
-
-    z-index: 1;
-    pointer-events: none;
-}
-
-.foto-direita img {
-    width: 100%;
-    height: 140%;
-    object-fit: contain;
-    display: block;
-}
-
-/* PASTAS DA ESQUERDA */
-
+/* MENU DA ESQUERDA */
 .left-menu {
     position: absolute;
     left: 30px;
@@ -124,40 +69,35 @@ a {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: lowercase;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, .35);
 }
 
-.folder-icon,
-.folder-small {
+.folder-icon {
     display: block;
     width: 64px;
     height: 44px;
     margin-bottom: 8px;
 
-    border-radius: 4px 6px 7px 7px;
     background: #5f3928;
+    border-radius: 4px 6px 7px 7px;
     box-shadow: inset -8px -6px 0 rgba(0, 0, 0, .08);
 
     position: relative;
 }
 
-.folder-icon::before,
-.folder-small::before {
+.folder-icon::before {
     content: "";
     position: absolute;
-
     top: -10px;
     left: 0;
 
     width: 32px;
     height: 17px;
 
-    border-radius: 4px 4px 0 0;
     background: #5f3928;
+    border-radius: 4px 4px 0 0;
 }
 
-/* JANELA PRINCIPAL / CMD */
-
+/* JANELA PRINCIPAL */
 .browser-window {
     position: relative;
     z-index: 2;
@@ -165,156 +105,93 @@ a {
     width: min(800px, 74vw);
     min-height: 385px;
 
+    background: #fff8e9;
     border: 5px solid #704936;
     border-radius: 28px;
-    background: #fff8e9;
     box-shadow: 8px 9px 0 rgba(112, 73, 54, .26);
 
     overflow: visible;
 }
 
-/* ABA ÚNICA SEM LINHA EMBAIXO */
-
-.browser-tabs {
-    position: absolute;
-
-    top: -38px;
-    left: 35px;
-
-    width: 230px;
-    height: 42px;
-
-    pointer-events: none;
-    z-index: 5;
+/* REMOVE ABA E SETAS */
+.browser-tabs,
+.tab,
+.tab-one,
+.browser-arrows {
+    display: none !important;
 }
 
-.tab {
-    position: absolute;
-    bottom: 0;
-
-    height: 38px;
-
-    background: #fff8e9;
-    border: 5px solid #704936;
-    border-bottom: none;
-
-    border-radius: 16px 16px 0 0;
-
-    transform: none;
-}
-
-.tab-one {
-    left: 0;
-
-    width: 210px;
-    height: 38px;
-
-    background: #fff8e9;
-
-    transform: none;
-}
-
-.tab-one::after {
-    display: none;
-}
-
-/* BARRA SUPERIOR */
-
+/* BARRA DE CIMA */
 .browser-topbar {
     height: 58px;
+    padding: 0 18px;
 
     border-bottom: 5px solid #704936;
 
     display: flex;
     align-items: center;
     gap: 16px;
-
-    padding: 0 18px;
-}
-
-.browser-arrows {
-    display: flex;
-    gap: 14px;
-
-    font-size: 42px;
-    line-height: 1;
-    font-weight: 900;
 }
 
 .address-bar {
     flex: 1;
-
     height: 23px;
 
+    background: #fffdf4;
     border: 4px solid #704936;
     border-radius: 20px;
-    background: #fffdf4;
 
     color: #8a5a42;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 18px;
-
     font-size: 17px;
     font-weight: 800;
     letter-spacing: 1px;
+
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
 }
 
-/* IMAGEM MENSAGENS */
-
 .window-actions {
+    width: 78px;
+    height: 40px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 78px;
-    height: 40px;
 }
 
 .mensagens-icon {
     width: 70px;
     height: auto;
-
     display: block;
-    object-fit: contain;
-
-    image-rendering: auto;
-    pointer-events: none;
 }
 
-/* CONTEÚDO INTERNO */
-
+/* CONTEÚDO DO LOGIN */
 .browser-content {
     min-height: 315px;
+    padding: 22px 38px 28px 45px;
 
     display: grid;
     grid-template-columns: 1.15fr .9fr;
     align-items: center;
-
     gap: 18px;
-
-    padding: 22px 38px 28px 45px;
 }
 
+/* PARTE DO COELHO */
 .cute-side {
     position: relative;
+    min-height: 250px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    min-height: 250px;
 }
-
-/* BALÃO */
 
 .speech-bubble {
     position: absolute;
-
     top: 15px;
     right: -5px;
+    z-index: 5;
 
     width: 165px;
     height: 115px;
@@ -323,22 +200,16 @@ a {
     align-items: center;
     justify-content: center;
 
-    z-index: 5;
     pointer-events: none;
 }
 
 .bubble-img {
     width: 128px;
     height: auto;
-
     display: block;
-    object-fit: contain;
-
     image-rendering: pixelated;
     filter: drop-shadow(0 5px 0 rgba(112, 73, 54, .14));
 }
-
-/* COELHINHO */
 
 .pet-wrap {
     width: 220px;
@@ -352,93 +223,73 @@ a {
 .pet-img {
     max-width: 210px;
     max-height: 220px;
-
-    width: auto;
-    height: auto;
-
     display: block;
-    object-fit: contain;
-
     filter: drop-shadow(0 8px 0 rgba(112, 73, 54, .14));
 }
 
-/* PAINEL DE LOGIN */
-
+/* PAINEL ROSA DO LOGIN */
 .login-panel {
     position: relative;
 
     width: 100%;
     max-width: 285px;
     margin-left: auto;
-
     padding: 108px 32px 22px;
 
+    background: #e7b8af;
     border: 4px solid #704936;
     border-radius: 24px;
-    background: #e7b8af;
     box-shadow: inset 0 0 0 2px rgba(255, 238, 225, .3);
 }
 
 .avatar-circle {
     position: absolute;
-
     top: 18px;
     left: 50%;
-
     transform: translateX(-50%);
 
     width: 82px;
     height: 82px;
 
     border-radius: 50%;
-
     background-image: url("../img/login/foto.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-
     background-color: #704936;
 }
 
 .login-title {
     color: #704936;
-
     font-size: 32px;
     font-weight: 900;
-
     margin-bottom: 12px;
 }
 
+/* FORMULÁRIO DE LOGIN */
 .login-form {
     position: relative;
 
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-    margin-top: 0;
 }
 
 .login-form label {
     position: absolute;
-
     left: 20px;
+    z-index: 2;
 
     width: 70px;
     height: 43px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
     color: #fff6ed;
-
     font-size: 21px;
     font-weight: 900;
-    letter-spacing: .4px;
+
+    display: flex;
+    align-items: center;
 
     pointer-events: none;
-    z-index: 2;
 }
 
 .login-form label[for="email"] {
@@ -453,12 +304,12 @@ a {
     width: 100%;
     height: 43px;
 
-    border: 0;
+    border: none;
+    outline: none;
     border-radius: 28px;
 
     background: #704936;
     color: #fff9ef;
-    outline: none;
 
     padding: 0 16px 0 96px;
 
@@ -473,36 +324,44 @@ a {
 }
 
 .login-form input:focus {
-    box-shadow:
-        0 0 0 4px rgba(255, 248, 233, .85),
-        inset 0 -3px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 0 0 4px rgba(255, 248, 233, .85);
 }
 
+/* BOTÕES */
 .login-buttons {
+    margin-top: 18px;
+
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 12px;
-
-    margin-top: 10px;
 }
 
 .btn-small {
-    border: 0;
+    min-width: 72px;
+    padding: 6px 12px;
+
+    border: none;
     border-radius: 20px;
 
     background: #704936;
     color: #fff9ef;
 
-    min-width: 72px;
-    padding: 6px 12px;
-
-    cursor: pointer;
-
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 15px;
     font-weight: 900;
-    letter-spacing: .5px;
+    line-height: 1;
+    letter-spacing: 0.2px;
 
-    transition: transform .15s ease, opacity .15s ease;
+    cursor: pointer;
+    transition: 0.2s;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .btn-small:hover {
@@ -510,57 +369,54 @@ a {
     opacity: .9;
 }
 
-/* LINK CRIAR CONTA */
+.btn-link,
+.btn-criar-conta {
+    text-decoration: none;
+}
 
 .register-link {
-    display: block;
-
-    margin-top: 12px;
-
-    text-align: center;
-
-    color: #704936;
-
-    font-size: 14px;
-    font-weight: 900;
-    text-decoration: none;
+    display: none;
 }
 
-.register-link:hover {
-    text-decoration: underline;
-}
-
-/* BOTÃO COM LINK */
-
-.btn-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    text-decoration: none;
-}
-
-/* ERRO */
-
+/* MENSAGEM DE ERRO */
 .error {
     margin: -2px 0 10px;
     padding: 8px 10px;
 
-    border-radius: 14px;
     background: #fff2f0;
     color: #8c3b2d;
+
     border: 2px solid rgba(112, 73, 54, .35);
+    border-radius: 14px;
 
     font-size: 13px;
     font-weight: 800;
     text-align: center;
 }
 
-/* PALETA DA DIREITA */
+/* URSINHO DA DIREITA */
+.foto-direita {
+    position: absolute;
+    top: 390px;
+    right: -50px;
+    z-index: 1;
 
+    width: 235px;
+    height: 145px;
+
+    pointer-events: none;
+}
+
+.foto-direita img {
+    width: 100%;
+    height: 140%;
+    object-fit: contain;
+    display: block;
+}
+
+/* PALETA DE CORES */
 .right-palette {
     position: absolute;
-
     right: 28px;
     top: 30px;
 
@@ -572,7 +428,6 @@ a {
 .right-palette span {
     width: 46px;
     height: 46px;
-
     border-radius: 50%;
     background: #704936;
 }
@@ -593,103 +448,11 @@ a {
     background: #d6c4b6;
 }
 
-/* BARRA INFERIOR */
-
-.bottom-bar {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 14px;
-
-    height: 52px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 38px;
-    gap: 38px;
-
-    color: #704936;
+/* PÁGINA DE CADASTRO */
+.cadastro-page {
+    padding-left: 20px;
+    padding-right: 20px;
 }
-
-.windows-icon {
-    width: 90px;
-    height: 52px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 28px);
-    grid-template-rows: repeat(2, 24px);
-    gap: 5px;
-}
-
-.windows-icon::before {
-    content: "";
-
-    display: block;
-
-    width: 28px;
-    height: 24px;
-
-    background: #704936;
-    box-shadow:
-        33px 0 0 #704936,
-        66px 0 0 #704936,
-        0 29px 0 #704936,
-        33px 29px 0 #704936,
-        66px 29px 0 #704936;
-}
-
-.folder-small {
-    width: 48px;
-    height: 34px;
-
-    margin: 0 38px 0 0;
-}
-
-.folder-small::before {
-    width: 26px;
-    height: 13px;
-    top: -8px;
-}
-
-.search-bar {
-    width: 370px;
-    height: 42px;
-
-    border: 2px solid rgba(112, 73, 54, .55);
-    border-radius: 9px;
-    background: #eebdb7;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 0 10px;
-
-    font-weight: 900;
-
-    margin-right: auto;
-}
-
-.search-bar span {
-    flex: 1;
-}
-
-.search-bar b {
-    font-size: 18px;
-}
-
-.system-icons {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-
-    font-size: 46px;
-    font-weight: 900;
-}
-
-/* TELA DE CADASTRO */
 
 .cadastro-window {
     width: min(650px, 78vw);
@@ -698,39 +461,34 @@ a {
 
 .cadastro-content {
     min-height: 330px;
+    padding: 18px 28px 24px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 18px 28px 24px;
 }
 
 .cadastro-panel {
-    margin: 0 auto;
-
     max-width: 330px;
-
+    margin: 0 auto;
     padding: 92px 32px 24px;
 }
 
 .cadastro-panel .avatar-circle {
     top: 16px;
-
     width: 68px;
     height: 68px;
 }
 
 .cadastro-title {
     color: #704936;
-
     font-size: 30px;
     font-weight: 900;
     text-align: center;
-
     margin-bottom: 18px;
 }
 
+/* FORMULÁRIO DE CADASTRO */
 .cadastro-form {
     display: flex;
     flex-direction: column;
@@ -739,28 +497,25 @@ a {
 
 .cadastro-field {
     position: relative;
-
     width: 100%;
     height: 42px;
 }
 
 .cadastro-field label {
     position: absolute;
-
     left: 20px;
     top: 0;
+    z-index: 2;
 
     height: 42px;
+
+    color: #fff6ed;
+    font-size: 18px;
+    font-weight: 900;
 
     display: flex;
     align-items: center;
 
-    color: #fff6ed;
-
-    font-size: 18px;
-    font-weight: 900;
-
-    z-index: 2;
     pointer-events: none;
 }
 
@@ -768,12 +523,12 @@ a {
     width: 100%;
     height: 42px;
 
-    border: 0;
+    border: none;
+    outline: none;
     border-radius: 28px;
 
     background: #704936;
     color: #fff9ef;
-    outline: none;
 
     padding: 0 16px 0 92px;
 
@@ -784,79 +539,22 @@ a {
 }
 
 .cadastro-field input:focus {
-    box-shadow:
-        0 0 0 4px rgba(255, 248, 233, .85),
-        inset 0 -3px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 0 0 4px rgba(255, 248, 233, .85);
 }
 
 .cadastro-buttons {
     margin-top: 8px;
 }
 
-/* BOTÕES GERAIS */
-
-.btn {
-    border: none;
-    background: #d184b3;
-    color: white;
-
-    padding: 12px 18px;
-
-    border-radius: 12px;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
-    display: inline-block;
-}
-
-.btn.danger {
-    background: #b91c1c;
-}
-
-.btn.dark {
-    background: #2b1723;
-}
-
-/* DASHBOARD */
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.dashboard-card {
-    background: white;
-
-    padding: 25px;
-
-    border-radius: 22px;
-    box-shadow: 0 14px 35px rgba(120, 70, 105, 0.13);
-
-    color: #2b1723;
-}
-
-.dashboard-card h2 {
-    margin-top: 0;
-}
-
-.dashboard-card p {
-    color: #77536b;
-    line-height: 1.5;
-}
-
 /* RESPONSIVO */
-
 @media (max-width: 1000px) {
+
     .desktop-login {
         padding: 35px 20px 80px;
     }
 
     .left-menu,
     .right-palette,
-    .system-icons,
     .foto-direita {
         display: none;
     }
@@ -871,6 +569,7 @@ a {
 }
 
 @media (max-width: 720px) {
+
     .login-body {
         overflow-y: auto;
     }
@@ -880,28 +579,15 @@ a {
         border-radius: 22px;
     }
 
-    .browser-tabs {
-        display: none;
-    }
-
     .browser-topbar {
         height: 54px;
-
-        gap: 8px;
-
         padding: 0 10px;
-    }
-
-    .browser-arrows {
-        font-size: 34px;
-        gap: 8px;
     }
 
     .address-bar {
-        font-size: 12px;
         height: 22px;
-
         padding: 0 10px;
+        font-size: 12px;
     }
 
     .window-actions {
@@ -910,7 +596,6 @@ a {
 
     .browser-content {
         grid-template-columns: 1fr;
-
         padding: 25px 18px 30px;
     }
 
@@ -921,7 +606,6 @@ a {
     .speech-bubble {
         top: 10px;
         right: 28px;
-
         width: 145px;
         height: 100px;
     }
@@ -940,34 +624,13 @@ a {
         max-height: 215px;
     }
 
-    .login-panel {
-        margin: 0 auto;
+    .login-panel,
+    .cadastro-panel {
         max-width: 310px;
-    }
-
-    .bottom-bar {
-        gap: 15px;
-        padding: 0 18px;
-    }
-
-    .search-bar {
-        width: 100%;
-        margin: 0;
-    }
-
-    .folder-small {
-        display: none;
+        margin: 0 auto;
     }
 
     .cadastro-content {
         padding: 25px 18px 30px;
-    }
-
-    .cadastro-panel {
-        max-width: 310px;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
     }
 }

@@ -1,302 +1,287 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 body.form-page {
-  min-height: 100vh;
-  background: #fdeee7;
-  padding: 60px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
+    min-height: 100vh;
+    background: #fdeee7;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
 }
 
-/* Gatinho */
+/* Gatinho do canto esquerdo */
 body.form-page::before {
-  content: "";
-  position: fixed;
-  top: -20px;
-  left: -10px;
-  width: 130px;
-  height: 130px;
-  background-image: url("../img/login/gatinho.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 0;
+    content: "";
+    position: fixed;
+    top: -20px;
+    left: -10px;
+    width: 130px;
+    height: 130px;
+    background-image: url("../img/login/gatinho.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
-/* Ursinho */
+/* Ursinho do canto direito */
 body.form-page::after {
-  content: "";
-  position: fixed;
-  right: -40px;
-  bottom: -29px;
-  width: 220px;
-  height: 160px;
-  background-image: url("../img/login/ursinho.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 0;
+    content: "";
+    position: fixed;
+    right: -40px;
+    bottom: -29px;
+    width: 220px;
+    height: 160px;
+    background-image: url("../img/login/ursinho.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
-/* Container principal padrão para todos os CREATE */
+/* Caixa principal */
 .form-container {
-  width: 680px;
-  max-width: 100%;
-  background: #fff3eb;
-  border-radius: 22px;
-  padding: 40px 30px;
-  box-shadow: 5px 5px 0 rgba(112, 73, 54, .2);
-  position: relative;
-  z-index: 1;
+    width: 680px;
+    max-width: 100%;
+    background: #fff3eb;
+    border-radius: 22px;
+    padding: 40px 30px;
+    box-shadow: 5px 5px 0 rgba(112, 73, 54, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
-/* Título padrão */
+/* Título */
 .form-title {
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  color: #704936;
-  margin-bottom: 30px;
-}
-
-/* Mensagem de erro */
-.form-error {
-  background: #ffe1dc;
-  color: #9c3f35;
-  border: 2px solid #f3aaa0;
-  padding: 12px 16px;
-  border-radius: 18px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+    color: #704936;
+    margin-bottom: 30px;
 }
 
 /* Formulário */
 .grupo-form {
-  width: 100%;
+    width: 100%;
 }
 
-/* Campos do formulário */
+/* Cada campo */
 .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
 }
 
 .form-group label {
-  font-weight: 800;
-  margin-bottom: 6px;
-  color: #704936;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: #704936;
+    font-size: 17px;
 }
 
+/* Inputs */
 .form-group input,
 .form-group textarea,
 .form-group select {
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: 18px;
-  border: 3px solid #a07d64;
-  background: #ffe8df;
-  color: #704936;
-  font-weight: 700;
-  font-size: 15px;
-  outline: none;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    border: 3px solid #a07d64;
+    background: #ffe8df;
+    color: #704936;
+    font-weight: 700;
+    font-size: 15px;
+    outline: none;
 }
 
+/* Placeholder */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(112, 73, 54, .65);
+    color: rgba(112, 73, 54, 0.65);
 }
 
+/* Área de texto */
 textarea {
-  min-height: 100px;
-  resize: vertical;
+    min-height: 100px;
+    resize: vertical;
 }
 
+/* Efeito ao clicar no campo */
 input:focus,
 textarea:focus,
 select:focus {
-  box-shadow: 0 0 0 3px rgba(255, 220, 210, .7);
+    box-shadow: 0 0 0 3px rgba(255, 220, 210, 0.7);
 }
 
-/* Upload */
+/* Caixa de upload */
 .upload-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 18px 14px;
-  border: 3px dashed #a07d64;
-  border-radius: 18px;
-  background: #ffe8df;
-  cursor: pointer;
-  margin-bottom: 4px;
-  text-align: center;
-  color: #704936;
-  transition: 0.2s;
+    width: 100%;
+    min-height: 140px;
+    border: 3px dashed #a07d64;
+    border-radius: 22px;
+    background: #ffe8df;
+    cursor: pointer;
+    text-align: center;
+    color: #704936;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+    padding: 25px;
+    transition: 0.2s;
 }
 
 .upload-box:hover {
-  background: #ffd9cc;
-}
-
-.upload-box span,
-.upload-box strong {
-  font-weight: 900;
-  color: #704936;
-}
-
-.upload-box small {
-  font-weight: 700;
-  color: rgba(112, 73, 54, .75);
+    background: #ffd9cc;
 }
 
 .upload-icon {
-  font-size: 28px;
-  line-height: 1;
+    display: block;
+    font-size: 28px;
+    line-height: 1;
+    color: #704936;
 }
 
+.upload-title {
+    display: block;
+    font-size: 19px;
+    font-weight: 900;
+    color: #704936;
+    line-height: 1.2;
+}
+
+.upload-subtitle {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(112, 73, 54, 0.75);
+    line-height: 1.2;
+}
+
+/* Esconde o input feio do arquivo */
 .input-file {
-  display: none;
+    display: none;
 }
 
-/* Botões padrão */
+/* Texto pequeno abaixo do upload */
+.form-hint {
+    display: block;
+    margin-top: 9px;
+    color: #a07d64;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Botões */
 .form-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
 }
 
 .btn-save,
 .btn-cancel {
-  min-width: 160px;
-  padding: 12px 24px;
-  border-radius: 30px;
-  border: none;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-  text-decoration: none;
-  text-align: center;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+    min-width: 160px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    text-align: center;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Botão salvar */
 .btn-save {
-  background: #fcbaba;
-  color: #fff;
+    background: #fcbaba;
+    color: #fff;
+    border: none;
 }
 
 .btn-save:hover {
-  background: #ffa6a6;
-  transform: translateY(-1px);
+    background: #ffa6a6;
+    transform: translateY(-1px);
 }
 
+/* Botão cancelar */
 .btn-cancel {
-  background: #fff;
-  color: #f98c8c;
-  border: 2px solid #f98c8c;
+    background: #fff;
+    color: #f98c8c;
+    border: 2px solid #f98c8c;
 }
 
 .btn-cancel:hover {
-  background: #fef0ef;
-  transform: translateY(-1px);
+    background: #fef0ef;
+    transform: translateY(-1px);
 }
 
-/* Compatibilidade com nomes antigos */
+/* Nomes antigos, caso alguma página use */
 .btn-salvar {
-  min-width: 160px;
-  padding: 12px 24px;
-  border-radius: 30px;
-  border: none;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-  text-decoration: none;
-  text-align: center;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: #fcbaba;
-  color: #fff;
+    min-width: 160px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    text-align: center;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #fcbaba;
+    color: #fff;
 }
 
 .btn-salvar:hover {
-  background: #ffa6a6;
-  transform: translateY(-1px);
+    background: #ffa6a6;
+    transform: translateY(-1px);
 }
 
 .btn-cancelar {
-  min-width: 160px;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-  text-decoration: none;
-  text-align: center;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  color: #f98c8c;
-  border: 2px solid #f98c8c;
+    min-width: 160px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    text-align: center;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #fff;
+    color: #f98c8c;
+    border: 2px solid #f98c8c;
 }
 
 .btn-cancelar:hover {
-  background: #fef0ef;
-  transform: translateY(-1px);
+    background: #fef0ef;
+    transform: translateY(-1px);
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  body.form-page {
-    padding: 40px 16px;
-  }
-
-  .form-container {
-    padding: 32px 22px;
-  }
-
-  .form-title {
-    font-size: 26px;
-  }
-
-  .form-actions {
-    flex-direction: column-reverse;
-  }
-
-  .btn-save,
-  .btn-cancel,
-  .btn-salvar,
-  .btn-cancelar {
-    width: 100%;
-  }
-
-  body.form-page::before {
-    width: 100px;
-    height: 100px;
-  }
-
-  body.form-page::after {
-    width: 160px;
-    height: 120px;
-    right: -45px;
-  }
-}
+/* Botão voltar */
 .btn-voltar {
     display: inline-flex;
     align-items: center;
@@ -309,10 +294,48 @@ select:focus {
     padding: 10px 18px;
     border-radius: 22px;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: 0.2s;
 }
 
 .btn-voltar:hover {
     background-color: #5f3928;
     transform: translateY(-1px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+
+    body.form-page {
+        padding: 40px 16px;
+    }
+
+    .form-container {
+        padding: 32px 22px;
+    }
+
+    .form-title {
+        font-size: 26px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-save,
+    .btn-cancel,
+    .btn-salvar,
+    .btn-cancelar {
+        width: 100%;
+    }
+
+    body.form-page::before {
+        width: 100px;
+        height: 100px;
+    }
+
+    body.form-page::after {
+        width: 160px;
+        height: 120px;
+        right: -45px;
+    }
 }

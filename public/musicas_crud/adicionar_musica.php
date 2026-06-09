@@ -88,9 +88,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="link_ouvir" name="link_ouvir" placeholder="Ex.: https://open.spotify.com/track/...">
         </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn-save">Adicionar Música</button>
-        </div>
+       <div class="form-actions">
+    <a href="../crud_grupos/grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-cancel">
+        Cancelar
+    </a>
+
+    <button type="submit" class="btn-save">
+        Salvar Música
+    </button>
+</div>
+                    
 
     </form>
 </div>

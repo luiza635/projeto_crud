@@ -1,33 +1,69 @@
 <?php
-include_once '../../src/config/database.php';
-include_once '../../src/includes/auth.php';
+require_once '../../src/includes/auth.php';
+require_once '../../src/config/database.php';
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    header("Location: ../index.php");
+    exit;
+}
 
 $id_grupo = $_POST['id_grupo'];
 $nome = $_POST['nome'];
-$tipo_grupo = $_POST['tipo'];
+$tipo_grupo = $_POST['tipo_grupo'];
 $debut = $_POST['debut'];
 $empresa = $_POST['empresa'];
-$membros = $_POST['membros'];
-$descricao = $_POST["descricao"];
+$numero_membros = $_POST['numero_membros'];
+$descricao = $_POST['descricao'];
 
-$imagemSalva = null;
-if (!empty($_FILES['imagem']['name']) && $_FILES['imagem']['error'] === 0) {
-    $arquivo = $_FILES['imagem'];
-    $ext = pathinfo($arquivo['name'], PATHINFO_EXTENSION);
-    $nomeArquivo = uniqid('capa_') . '.' . $ext;
-    $pastaUploads = '../uploads/grupos/';
-    
-    if (!is_dir($pastaUploads)) {
-        mkdir($pastaUploads, 0755, true);
+/* Buscar a imagem atual do grupo */
+$sql = "SELECT imagem FROM grupos WHERE id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id_grupo]);
+
+$grupo = $stmt->fetch(PDO::FETCH_OBJ);
+
+$imagemSalva = $grupo->imagem;
+
+/* Se o usuário mandar uma nova imagem, troca a imagem antiga */
+if (!empty($_FILES['imagem']['name'])) {
+
+    $pasta = "../uploads/grupos/";
+
+    if (!is_dir($pasta)) {
+        mkdir($pasta, 0777, true);
     }
 
-    if (move_uploaded_file($arquivo['tmp_name'], $pastaUploads . $nomeArquivo)) {
-        $imagemSalva = 'uploads/grupos/' . $nomeArquivo;
+    $nomeImagem = time() . "_" . $_FILES['imagem']['name'];
+    $caminhoImagem = $pasta . $nomeImagem;
+
+    if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem)) {
+        $imagemSalva = "uploads/grupos/" . $nomeImagem;
     }
 }
 
-$stmt = $pdo->prepare("UPDATE grupos SET nome = ?, tipo_grupo = ?, debut = ?, numero_membros = ?, descricao = ?, imagem = ? WHERE id = ?");
-$stmt->execute([$nome, $tipo_grupo, $debut, $membros, $descricao, $imagemSalva, $id_grupo]);
+/* Atualizar o grupo */
+$sql = "UPDATE grupos 
+        SET nome = ?, 
+            tipo_grupo = ?, 
+            debut = ?, 
+            empresa = ?, 
+            numero_membros = ?, 
+            descricao = ?, 
+            imagem = ?
+        WHERE id = ?";
 
-header("Location: index.php");
-exit();
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    $nome,
+    $tipo_grupo,
+    $debut,
+    $empresa,
+    $numero_membros,
+    $descricao,
+    $imagemSalva,
+    $id_grupo
+]);
+
+header("Location: ../index.php");
+exit;

@@ -134,8 +134,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-salvar">Salvar Integrante</button>
-        </div>
+            <div class="form-actions">
+    <a href="../crud_grupos/grupo.php?id_grupo=<?= htmlspecialchars($id_grupo) ?>" class="btn-cancel">
+        Cancelar
+    </a>
+
+    <button type="submit" class="btn-save">
+        Salvar Integrante
+    </button>
+</div>        
 
     </form>
 
