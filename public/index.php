@@ -2,166 +2,151 @@
 require_once '../src/includes/auth.php';
 require_once '../src/config/database.php';
 
-$sql = "SELECT * FROM grupos";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
-$grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$grupos = $pdo->query("SELECT * FROM grupos")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-
     <title>Grupos de Música</title>
 
     <link rel="stylesheet" href="assets/css/pg_index.css?v=30">
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 
 <body class="page-kpop">
 
-    <main class="desktop-crud">
+<main class="desktop-crud">
 
-        <section class="browser-window">
+    <section class="browser-window">
+        <div class="browser-content">
 
-            <div class="browser-content">
+            <header class="crud-header">
 
-                <header class="crud-header">
+                <div class="title-area">
+                    <h1 class="page-title">Grupos de Música</h1>
+                </div>
 
-                    <div class="title-area">
-                        <h1 class="page-title">Grupos de K-pop</h1>
-                    </div>
+                <div class="user-area">
+                    <span class="user-name">
+                        <?= htmlspecialchars($_SESSION['usuario_nome'] ?? 'usuário') ?>
+                    </span>
 
-                    <div class="user-area">
-                        <span class="user-name">
-                            <?= htmlspecialchars($_SESSION['usuario_nome'] ?? 'usuário') ?>
-                        </span>
-
-                        <a href="login/logout.php" class="btn-sair">
-                            sair
-                        </a>
-                    </div>
-
-                </header>
-
-                <section class="crud-actions">
-                    <a href="crud_grupos/criar_grupo.php" class="btn-adicionar">
-                        + novo grupo
+                    <a href="login/logout.php" class="btn-sair">
+                        sair
                     </a>
-                </section>
+                </div>
 
-                <section class="table-card">
+            </header>
 
-                    <table class="grupos-table">
+            <section class="crud-actions">
+                <a href="crud_grupos/criar_grupo.php" class="btn-adicionar">
+                    + novo grupo
+                </a>
+            </section>
 
-                        <thead>
-                            <tr>
-                                <th>Grupo</th>
-                                <th>Debut</th>
-                                <th>Empresa</th>
-                                <th>Membros</th>
-                                <th class="acoes-title">Ações</th>
-                            </tr>
-                        </thead>
+            <section class="table-card">
 
-                        <tbody>
+                <table class="grupos-table">
 
-                            <?php if (count($grupos) > 0): ?>
+                    <thead>
+                        <tr>
+                            <th>Grupo</th>
+                            <th>Debut</th>
+                            <th>Empresa</th>
+                            <th>Membros</th>
+                            <th class="acoes-title">Ações</th>
+                        </tr>
+                    </thead>
 
-                                <?php foreach ($grupos as $grupo): ?>
+                    <tbody>
 
-                                    <tr>
+                        <?php if ($grupos): ?>
 
-                                        <td class="grupo-nome">
-                                            <?= htmlspecialchars($grupo['nome']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($grupo['debut']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($grupo['empresa']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($grupo['numero_membros']) ?>
-                                        </td>
-
-                                        <td class="acoes">
-
-                                            <a
-                                                href="crud_grupos/editar.php?id_grupo=<?= $grupo['id'] ?>"
-                                                class="btn-acao btn-editar"
-                                                title="Editar grupo"
-                                            >
-                                                ✎
-                                            </a>
-
-                                            <a
-                                                href="crud_grupos/excluir_grupo.php?id_grupo=<?= $grupo['id'] ?>"
-                                                class="btn-acao btn-excluir"
-                                                title="Excluir grupo"
-                                                onclick="return confirm('Tem certeza que deseja excluir este grupo?')"
-                                            >
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-
-                                            <a
-                                                href="crud_grupos/grupo.php?id_grupo=<?= $grupo['id'] ?>"
-                                                class="btn-acao btn-detalhes"
-                                                title="Detalhes do grupo"
-                                            >
-                                                <i class="fa-solid fa-circle-info"></i>
-                                            </a>
-
-                                        </td>
-
-                                    </tr>
-
-                                <?php endforeach; ?>
-
-                            <?php else: ?>
-
+                            <?php foreach ($grupos as $grupo): ?>
                                 <tr>
-                                    <td colspan="5" class="empty-message">
-                                        Nenhum grupo cadastrado ainda.
+
+                                    <td class="grupo-nome">
+                                        <?= htmlspecialchars($grupo['nome']) ?>
                                     </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($grupo['debut']) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($grupo['empresa']) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($grupo['numero_membros']) ?>
+                                    </td>
+
+                                    <td class="acoes">
+
+                                        <a
+                                            href="crud_grupos/editar.php?id_grupo=<?= (int) $grupo['id'] ?>"
+                                            class="btn-acao btn-editar"
+                                            title="Editar grupo"
+                                        >
+                                            ✎
+                                        </a>
+
+                                        <a
+                                            href="crud_grupos/excluir_grupo.php?id_grupo=<?= (int) $grupo['id'] ?>"
+                                            class="btn-acao btn-excluir"
+                                            title="Excluir grupo"
+                                            onclick="return confirm('Tem certeza que deseja excluir este grupo?')"
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+
+                                        <a
+                                            href="crud_grupos/grupo.php?id_grupo=<?= (int) $grupo['id'] ?>"
+                                            class="btn-acao btn-detalhes"
+                                            title="Detalhes do grupo"
+                                        >
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+
+                                    </td>
+
                                 </tr>
+                            <?php endforeach; ?>
 
-                            <?php endif; ?>
+                        <?php else: ?>
 
-                        </tbody>
+                            <tr>
+                                <td colspan="5" class="empty-message">
+                                    Nenhum grupo cadastrado ainda.
+                                </td>
+                            </tr>
 
-                    </table>
+                        <?php endif; ?>
 
-                </section>
+                    </tbody>
 
-            </div>
+                </table>
 
-        </section>
+            </section>
 
-        <div class="foto-direita">
-            <img src="assets/img/login/ursinho.png" alt="Imagem do ursinho">
         </div>
+    </section>
 
-        <div class="right-palette">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <div class="foto-direita">
+        <img src="assets/img/login/ursinho.png" alt="Imagem do ursinho">
+    </div>
 
-    </main>
+    <div class="right-palette">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</main>
 
 </body>
 </html>
