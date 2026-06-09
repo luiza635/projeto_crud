@@ -14,7 +14,7 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
 
-    <title>Grupos de K-pop</title>
+    <title>Grupos de Música</title>
 
     <link rel="stylesheet" href="assets/css/pg_index.css?v=30">
 
