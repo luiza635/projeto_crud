@@ -243,7 +243,8 @@ $imagemGrupo = imagem($grupo->imagem, 'assets/img/foto_boynextdoor.jpg');
 
                     <?php endforeach; ?>
 
-                <?php endif; ?>
+
+                    <?php endif; ?>
 
             </div>
 

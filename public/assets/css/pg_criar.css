@@ -17,7 +17,7 @@ body.form-page {
     position: relative;
 }
 
-/* Gatinho do canto esquerdo */
+
 body.form-page::before {
     content: "";
     position: fixed;
@@ -31,7 +31,7 @@ body.form-page::before {
     z-index: 0;
 }
 
-/* Ursinho do canto direito */
+
 body.form-page::after {
     content: "";
     position: fixed;
@@ -45,7 +45,7 @@ body.form-page::after {
     z-index: 0;
 }
 
-/* Caixa principal */
+
 .form-container {
     width: 680px;
     max-width: 100%;
@@ -57,7 +57,7 @@ body.form-page::after {
     z-index: 1;
 }
 
-/* Título */
+
 .form-title {
     font-size: 30px;
     font-weight: 900;
@@ -66,12 +66,12 @@ body.form-page::after {
     margin-bottom: 30px;
 }
 
-/* Formulário */
+
 .grupo-form {
     width: 100%;
 }
 
-/* Cada campo */
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@ body.form-page::after {
     font-size: 17px;
 }
 
-/* Inputs */
+
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -100,26 +100,26 @@ body.form-page::after {
     outline: none;
 }
 
-/* Placeholder */
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: rgba(112, 73, 54, 0.65);
 }
 
-/* Área de texto */
+
 textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-/* Efeito ao clicar no campo */
+
 input:focus,
 textarea:focus,
 select:focus {
     box-shadow: 0 0 0 3px rgba(255, 220, 210, 0.7);
 }
 
-/* Caixa de upload */
+
 .upload-box {
     width: 100%;
     min-height: 140px;
@@ -167,12 +167,12 @@ select:focus {
     line-height: 1.2;
 }
 
-/* Esconde o input feio do arquivo */
+
 .input-file {
     display: none;
 }
 
-/* Texto pequeno abaixo do upload */
+
 .form-hint {
     display: block;
     margin-top: 9px;
@@ -181,7 +181,7 @@ select:focus {
     font-weight: 700;
 }
 
-/* Botões */
+
 .form-actions {
     display: flex;
     justify-content: space-between;
@@ -206,7 +206,7 @@ select:focus {
     align-items: center;
 }
 
-/* Botão salvar */
+
 .btn-save {
     background: #fcbaba;
     color: #fff;
@@ -218,7 +218,7 @@ select:focus {
     transform: translateY(-1px);
 }
 
-/* Botão cancelar */
+
 .btn-cancel {
     background: #fff;
     color: #f98c8c;
@@ -230,7 +230,7 @@ select:focus {
     transform: translateY(-1px);
 }
 
-/* Nomes antigos, caso alguma página use */
+
 .btn-salvar {
     min-width: 160px;
     padding: 12px 24px;
@@ -281,7 +281,7 @@ select:focus {
     transform: translateY(-1px);
 }
 
-/* Botão voltar */
+
 .btn-voltar {
     display: inline-flex;
     align-items: center;
@@ -302,7 +302,7 @@ select:focus {
     transform: translateY(-1px);
 }
 
-/* Responsivo */
+
 @media (max-width: 768px) {
 
     body.form-page {

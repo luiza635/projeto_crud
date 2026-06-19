@@ -87,7 +87,7 @@ body.group-info::after {
     content: none !important;
 }
 
-/* CABEÇALHO SEM BOTÃO VOLTAR */
+
 .details-header {
     display: flex;
     align-items: center;
@@ -104,7 +104,7 @@ body.group-info::after {
     letter-spacing: 1px;
 }
 
-/* CARD PRINCIPAL */
+
 .group-card {
     display: grid;
     grid-template-columns: 330px 1fr;
@@ -169,7 +169,7 @@ body.group-info::after {
     line-height: 1.55;
 }
 
-/* DUAS COLUNAS */
+
 .details-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -178,7 +178,7 @@ body.group-info::after {
     margin-top: 10px;
 }
 
-/* PAINÉIS */
+
 .mini-panel {
     width: 100%;
     padding: 18px;

@@ -19,7 +19,7 @@ a {
     text-decoration: none;
 }
 
-/* FUNDO GERAL */
+
 
 .desktop-crud {
     position: relative;
@@ -39,7 +39,7 @@ a {
         linear-gradient(135deg, #f5d8cd 0%, #f1cfc4 50%, #edc8bd 100%);
 }
 
-/* GATINHO NO TOPO */
+
 
 .desktop-crud::before {
     content: "";
@@ -60,7 +60,7 @@ a {
     pointer-events: none;
 }
 
-/* URSINHO NO CANTO */
+
 
 .foto-direita {
     position: absolute;

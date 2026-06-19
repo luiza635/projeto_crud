@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = trim($_POST['titulo'] ?? '');
     $letra = trim($_POST['letra'] ?? '');
     $link_ouvir = trim($_POST['link_ouvir'] ?? '');
-    $capa = $_FILES['capa'] ?? null;
+    $capa = $_FILES['capa'] ?? '';
 
     if ($titulo && $letra) {
         $capaSalva = null;
